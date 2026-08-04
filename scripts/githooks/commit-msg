@@ -1,0 +1,19 @@
+#! /usr/bin/env python
+
+from subprocess import run
+from sys import argv, exit, stderr, stdin, stdout
+
+
+def main(msg_path: str) -> None:
+    process = run(
+        ["mise", "run", "lint:commitlint", "--", "--edit", msg_path],
+        check=False,
+        stderr=stderr,
+        stdin=stdin,
+        stdout=stdout,
+    )
+    exit(process.returncode)
+
+
+if __name__ == "__main__":
+    main(argv[1])
