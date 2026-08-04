@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
+
+name: CI
+
+on: # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+
+jobs:
+  ci:
+    runs-on: codeberg-small-lazy
+    container: catthehacker/ubuntu:act-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up mise
+        uses: https://github.com/jdx/mise-action@v4
+        with:
+          github_token: ${{ secrets.XTC_GITHUB_TOKEN }}
+
+      - name: Check tools
+        run: mise ls
+
+      # `mise which` is used instead of `mise exec` because `mise exec` would
+      # install dependencies first
+      - name: Get deno cache dir
+        id: deno-cache
+        run: |
+          dir="$("$(mise which deno)" info --json | jq -r '.denoDir')"
+          echo "$dir"
+          echo "dir=$dir" >> $GITHUB_OUTPUT
+
+      - name: Set up deno cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.deno-cache.outputs.dir }}
+          key: ${{ runner.os }}-deno-${{ hashFiles('deno.lock') }}
+          restore-keys: ${{ runner.os }}-deno-
+
+      # `mise which` is used instead of `mise exec` because `mise exec` would
+      # install dependencies first
+      - name: Get uv cache dir
+        id: uv-cache
+        run: |
+          dir="$("$(mise which uv)" cache dir)"
+          echo "$dir"
+          echo "dir=$dir" >> $GITHUB_OUTPUT
+
+      - name: Set up uv cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.uv-cache.outputs.dir }}
+          key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
+          restore-keys: ${{ runner.os }}-uv-
+
+      - name: Install dependencies
+        run: mise deps
