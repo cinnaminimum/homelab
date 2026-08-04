@@ -1,0 +1,14 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[deps.uv]
+auto = true
+
+[settings]
+experimental = true
+
+[settings.python]
+uv_venv_auto = "source"
+
+[tools]
+python = "latest"
+uv = "latest"
