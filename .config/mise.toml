@@ -24,9 +24,17 @@ env.GIT_CONFIG_VALUE_0 = "false"
 description = "Configure local git hooks"
 run = "git config --local core.hooksPath scripts/githooks"
 
+[tasks.lint]
+description = "Run (practically) all linters"
+depends = ["lint:ansible"]
+
 [tasks."lint:all"]
 description = "Run (literally) all linters"
-depends = ["lint:commitlint"]
+depends = ["lint:ansible", "lint:commitlint"]
+
+[tasks."lint:ansible"]
+description = "Run ansible-lint"
+run = "ansible-lint"
 
 [tasks."lint:commitlint"]
 description = "Run project commitlint wrapper"
@@ -35,5 +43,6 @@ run = "uv run scripts/tasks/commitlint.py"
 [tools]
 node = "latest"
 "npm:@commitlint/cli" = "latest"
+"pipx:ansible-lint" = "latest"
 python = "latest"
 uv = "latest"

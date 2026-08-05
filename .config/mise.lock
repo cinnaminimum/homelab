@@ -68,6 +68,10 @@ url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-win-x64.zip"
 version = "20.1.0"
 backend = "npm:@commitlint/cli"
 
+[[tools."pipx:ansible-lint"]]
+version = "26.6.0"
+backend = "pipx:ansible-lint"
+
 [[tools.python]]
 version = "3.14.6"
 backend = "core:python"
