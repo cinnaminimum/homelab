@@ -9,9 +9,14 @@ experimental = true
 [settings.python]
 uv_venv_auto = "source"
 
+[tasks."ansible:test:sanity"]
+description = "Run ansible-test sanity"
+run = "ansible-test sanity --python 3.14"
+alias = ["test:ansible:sanity"]
+
 [tasks.ci]
 description = "Run CI tasks"
-depends = ["lint:all"]
+depends = ["lint:all", "test"]
 
 [tasks.commitlint]
 description = "Run commitlint with project configuration"
@@ -39,6 +44,14 @@ run = "ansible-lint"
 [tasks."lint:commitlint"]
 description = "Run project commitlint wrapper"
 run = "uv run scripts/tasks/commitlint.py"
+
+[tasks.test]
+description = "Run tests"
+depends = ["test:ansible"]
+
+[tasks."test:ansible"]
+description = "Run ansible tests"
+depends = ["test:ansible:sanity"]
 
 [tools]
 node = "latest"
