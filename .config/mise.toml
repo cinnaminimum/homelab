@@ -19,6 +19,11 @@ description = "Run ansible sanity tests"
 run = "ansible-test sanity --python 3.14"
 alias = ["test:ansible:sanity"]
 
+[tasks."ansible:test:units"]
+description = "Run ansible unit tests"
+run = "ansible-test units --python 3.14"
+alias = ["test:ansible:units"]
+
 [tasks.ci]
 description = "Run CI tasks"
 depends = ["lint:all", "test"]
@@ -64,7 +69,7 @@ depends = ["test:ansible"]
 
 [tasks."test:ansible"]
 description = "Run ansible tests"
-depends = ["test:ansible:integration", "test:ansible:sanity"]
+depends = ["test:ansible:integration", "test:ansible:sanity", "test:ansible:units"]
 
 [tools]
 node = "latest"
