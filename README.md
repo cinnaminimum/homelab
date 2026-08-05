@@ -71,6 +71,10 @@ See the
 - [The Bullhorn (the Ansible Contributor newsletter)](https://docs.ansible.com/ansible/devel/community/communication.html#the-bullhorn)
 - [News for Maintainers](https://forum.ansible.com/tag/news-for-maintainers)
 
+## Provenance
+
+Proudly written with 100% natural stupidity.
+
 ## Licensing
 
 GNU General Public License v3.0 or later.
