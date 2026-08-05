@@ -3,6 +3,9 @@
 [deps.uv]
 auto = true
 
+[env]
+ANSIBLE_CONFIG = ".config/ansible.cfg"
+
 [settings]
 experimental = true
 
