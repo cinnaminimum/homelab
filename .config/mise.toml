@@ -38,6 +38,10 @@ run = "mise run commitlint -- --edit $1"
 description = "Configure local git hooks"
 run = "git config --local core.hooksPath scripts/githooks"
 
+[tasks."git:pre-commit"]
+description = "Git pre-commit hook"
+depends = ["lint", "test"]
+
 [tasks.lint]
 description = "Run (practically) all linters"
 depends = ["lint:ansible"]
