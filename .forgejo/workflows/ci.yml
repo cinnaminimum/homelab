@@ -22,9 +22,6 @@ jobs:
         with:
           github_token: ${{ secrets.XTC_GITHUB_TOKEN }}
 
-      - name: Check tools
-        run: mise ls
-
       # `mise which` is used instead of `mise exec` because `mise exec` would
       # install dependencies first
       - name: Get uv cache dir
