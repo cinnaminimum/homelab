@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "@commitlint/cli": "npm:@commitlint/cli@^21.2.1"
-  }
-}

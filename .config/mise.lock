@@ -32,6 +32,42 @@ url = "https://dl.deno.land/release/v2.6.0/deno-x86_64-apple-darwin.zip"
 checksum = "sha256:940b4c7c8531687e6a621cce3c8e0efa530d08a639dadf70697bb2788f9c35b0"
 url = "https://dl.deno.land/release/v2.6.0/deno-x86_64-pc-windows-msvc.zip"
 
+[[tools.node]]
+version = "25.2.1"
+backend = "core:node"
+
+[tools.node."platforms.linux-arm64"]
+checksum = "sha256:905238a17be9ae62c16e596019268d8ca9f0fc3142602a1f860dc4a7c1ddbf82"
+url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-linux-arm64.tar.gz"
+
+[tools.node."platforms.linux-arm64-musl"]
+checksum = "sha256:3137ad833b26bcbe95f3179314fb05f1c13506f647ae7f5665488e2bdd6cc23b"
+url = "https://unofficial-builds.nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-arm64-musl.tar.gz"
+
+[tools.node."platforms.linux-x64"]
+checksum = "sha256:2094ecdc844ea11e9777cac42672b0d89cd63d27204193a587dc5a2d276bb940"
+url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-linux-x64.tar.gz"
+
+[tools.node."platforms.linux-x64-musl"]
+checksum = "sha256:96fd0576bfcd06e317d9221f386027d130d4b619ff2c2de4c1d210dab2555c68"
+url = "https://unofficial-builds.nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-x64-musl.tar.gz"
+
+[tools.node."platforms.macos-arm64"]
+checksum = "sha256:be87e21bd235a451fad02c89e5bf7cb17e206e4cd89dd5664f20d19e7dfde6f9"
+url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-darwin-arm64.tar.gz"
+
+[tools.node."platforms.macos-x64"]
+checksum = "sha256:c266da5a9075a56e1aa02460ce8df96fca9e796c388abe94a8df4949945df6b6"
+url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-darwin-x64.tar.gz"
+
+[tools.node."platforms.windows-x64"]
+checksum = "sha256:f97ba75ead7720652f3925d9cf8661e083a28c6b98ea77acc83903d77a9dd688"
+url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-win-x64.zip"
+
+[[tools."npm:@commitlint/cli"]]
+version = "20.1.0"
+backend = "npm:@commitlint/cli"
+
 [[tools.python]]
 version = "3.14.6"
 backend = "core:python"

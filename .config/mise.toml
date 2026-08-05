@@ -1,8 +1,5 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
-[deps.deno]
-auto = true
-
 [deps.uv]
 auto = true
 
@@ -14,7 +11,7 @@ uv_venv_auto = "source"
 
 [tasks.commitlint]
 description = "Run commitlint with project configuration"
-run = "deno run -A @commitlint/cli --config .config/commitlint.yml"
+run = "commitlint --config .config/commitlint.yml"
 env.GIT_CONFIG_COUNT = "1"
 env.GIT_CONFIG_KEY_0 = "log.showSignature"
 env.GIT_CONFIG_VALUE_0 = "false"
@@ -28,6 +25,7 @@ description = "Run project commitlint wrapper"
 run = "uv run scripts/tasks/commitlint.py"
 
 [tools]
-deno = "latest"
+node = "latest"
+"npm:@commitlint/cli" = "latest"
 python = "latest"
 uv = "latest"

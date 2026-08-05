@@ -25,22 +25,6 @@ jobs:
 
       # `mise which` is used instead of `mise exec` because `mise exec` would
       # install dependencies first
-      - name: Get deno cache dir
-        id: deno-cache
-        run: |
-          dir="$("$(mise which deno)" info --json | jq -r '.denoDir')"
-          echo "$dir"
-          echo "dir=$dir" >> $GITHUB_OUTPUT
-
-      - name: Set up deno cache
-        uses: actions/cache@v6
-        with:
-          path: ${{ steps.deno-cache.outputs.dir }}
-          key: ${{ runner.os }}-deno-${{ hashFiles('deno.lock') }}
-          restore-keys: ${{ runner.os }}-deno-
-
-      # `mise which` is used instead of `mise exec` because `mise exec` would
-      # install dependencies first
       - name: Get uv cache dir
         id: uv-cache
         run: |
