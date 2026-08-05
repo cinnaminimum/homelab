@@ -9,6 +9,11 @@ experimental = true
 [settings.python]
 uv_venv_auto = "source"
 
+[tasks."ansible:test:integration"]
+description = "Run ansible integration tests"
+run = "ansible-test integration --python 3.14"
+alias = ["test:ansible:integration"]
+
 [tasks."ansible:test:sanity"]
 description = "Run ansible sanity tests"
 run = "ansible-test sanity --python 3.14"
@@ -51,7 +56,7 @@ depends = ["test:ansible"]
 
 [tasks."test:ansible"]
 description = "Run ansible tests"
-depends = ["test:ansible:sanity"]
+depends = ["test:ansible:integration", "test:ansible:sanity"]
 
 [tools]
 node = "latest"
