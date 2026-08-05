@@ -9,6 +9,10 @@ experimental = true
 [settings.python]
 uv_venv_auto = "source"
 
+[tasks.ci]
+description = "Run CI tasks"
+depends = ["lint:all"]
+
 [tasks.commitlint]
 description = "Run commitlint with project configuration"
 run = "commitlint --config .config/commitlint.yml"
@@ -19,6 +23,10 @@ env.GIT_CONFIG_VALUE_0 = "false"
 [tasks."git:hooks"]
 description = "Configure local git hooks"
 run = "git config --local core.hooksPath scripts/githooks"
+
+[tasks."lint:all"]
+description = "Run (literally) all linters"
+depends = ["lint:commitlint"]
 
 [tasks."lint:commitlint"]
 description = "Run project commitlint wrapper"
