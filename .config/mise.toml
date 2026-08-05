@@ -10,7 +10,7 @@ experimental = true
 uv_venv_auto = "source"
 
 [tasks."ansible:test:sanity"]
-description = "Run ansible-test sanity"
+description = "Run ansible sanity tests"
 run = "ansible-test sanity --python 3.14"
 alias = ["test:ansible:sanity"]
 
