@@ -30,6 +30,10 @@ env.GIT_CONFIG_COUNT = "1"
 env.GIT_CONFIG_KEY_0 = "log.showSignature"
 env.GIT_CONFIG_VALUE_0 = "false"
 
+[tasks."git:commit-msg"]
+description = "Git commit-msg hook"
+run = "mise run commitlint -- --edit $1"
+
 [tasks."git:hooks"]
 description = "Configure local git hooks"
 run = "git config --local core.hooksPath scripts/githooks"

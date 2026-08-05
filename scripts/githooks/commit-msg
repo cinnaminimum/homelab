@@ -4,9 +4,9 @@ from subprocess import run
 from sys import argv, exit, stderr, stdin, stdout
 
 
-def main(msg_path: str) -> None:
+def main(args: list[str]) -> None:
     process = run(
-        ["mise", "run", "lint:commitlint", "--", "--edit", msg_path],
+        ["mise", "run", "git:commit-msg", "--", *args],
         check=False,
         stderr=stderr,
         stdin=stdin,
@@ -16,4 +16,4 @@ def main(msg_path: str) -> None:
 
 
 if __name__ == "__main__":
-    main(argv[1])
+    main(argv[1:])
