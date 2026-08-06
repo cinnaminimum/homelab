@@ -38,7 +38,7 @@ alias = ["test:ansible:units"]
 
 [tasks.ci]
 description = "Run CI tasks"
-depends = ["build", "install", "lint:all", "test"]
+depends = ["build", "docs:build", "install", "lint:all", "test"]
 
 [tasks.commitlint]
 description = "Run commitlint with project configuration"
@@ -46,6 +46,18 @@ run = "commitlint --config .config/commitlint.yml"
 env.GIT_CONFIG_COUNT = "1"
 env.GIT_CONFIG_KEY_0 = "log.showSignature"
 env.GIT_CONFIG_VALUE_0 = "false"
+
+[tasks."docs:build"]
+description = "Build documentation"
+run = "uv run scripts/tasks/build-docs.py"
+alias = ["build:docs"]
+wait_for = ["install"]
+
+[tasks."docs:lint"]
+description = "Run antsibull-docs linter"
+run = "antsibull-docs lint-collection-docs --plugin-docs --check-extra-docs-refs --skip-rstcheck ."
+alias = ["lint:docs"]
+wait_for = ["install"]
 
 [tasks."git:commit-msg"]
 description = "Git commit-msg hook"
@@ -61,11 +73,11 @@ depends = ["lint", "test"]
 
 [tasks.lint]
 description = "Run (practically) all linters"
-depends = ["lint:ansible"]
+depends = ["lint:ansible", "lint:docs"]
 
 [tasks."lint:all"]
 description = "Run (literally) all linters"
-depends = ["lint:ansible", "lint:commitlint"]
+depends = ["lint", "lint:commitlint"]
 
 [tasks."lint:ansible"]
 description = "Run ansible-lint"
@@ -87,4 +99,5 @@ depends = ["test:ansible:integration", "test:ansible:sanity", "test:ansible:unit
 node = "latest"
 "npm:@commitlint/cli" = "latest"
 "pipx:ansible-lint" = { version = "latest", uvx_args = "--with distlib" }
+"pipx:antsibull-docs" = "latest"
 uv = "latest"

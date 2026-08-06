@@ -32,6 +32,6 @@ extra_links:
 # Specify communication channels for your collection. We suggest to not specify more
 # than one place for communication per communication tool to avoid confusion.
 communication:
-  forum:
+  forums:
     - topic: Ansible Forum
       url: https://forum.ansible.com/

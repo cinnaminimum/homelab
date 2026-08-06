@@ -119,6 +119,10 @@ jobs:
           COMMITLINT_TO: ${{ forgejo.event.pull_request.head.sha }}
         working-directory: ${{ steps.collection-metadata.outputs.checkout-path }}
 
+      - name: Remove docs bloat
+        run: rm -rf build/docs/.venv build/docs/build/doctrees
+        working-directory: ${{ steps.collection-metadata.outputs.checkout-path }}
+
       - name: Upload build artifact
         uses: https://data.forgejo.org/forgejo/upload-artifact@v4
         with:

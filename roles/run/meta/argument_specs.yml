@@ -4,6 +4,7 @@
 argument_specs:
   main:
     short_description: Role description.
+    description: Longer role description.
     options:
       run_my_variable:
         type: str
