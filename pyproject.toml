@@ -9,6 +9,7 @@ testpaths = ["tests"]
 [dependency-groups]
 dev = [
     "ansible-core>=2.21.2",
+    "distlib>=0.4.3",
     "pytest>=9.1.1",
     "pytest-xdist>=3.8.0",
 ]

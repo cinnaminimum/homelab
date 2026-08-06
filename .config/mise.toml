@@ -9,6 +9,18 @@ experimental = true
 [settings.python]
 uv_venv_auto = "source"
 
+[tasks."ansible:galaxy:build"]
+description = "Build an Ansible collection artifact that can be published to Ansible Galaxy"
+run = "ansible-galaxy collection build --output-path build"
+alias = ["build"]
+wait_for = ["lint:ansible", "test:ansible:*"] # There is a concurrency bug
+
+[tasks."ansible:galaxy:install"]
+description = "Install collection"
+run = "ansible-galaxy collection install build/geraldyaya-ecstasy-*.tar.gz"
+alias = ["install"]
+wait_for = ["ansible:galaxy:build"]
+
 [tasks."ansible:test:integration"]
 description = "Run ansible integration tests"
 run = "ansible-test integration --python 3.14"
@@ -26,7 +38,7 @@ alias = ["test:ansible:units"]
 
 [tasks.ci]
 description = "Run CI tasks"
-depends = ["lint:all", "test"]
+depends = ["build", "install", "lint:all", "test"]
 
 [tasks.commitlint]
 description = "Run commitlint with project configuration"
@@ -74,5 +86,5 @@ depends = ["test:ansible:integration", "test:ansible:sanity", "test:ansible:unit
 [tools]
 node = "latest"
 "npm:@commitlint/cli" = "latest"
-"pipx:ansible-lint" = "latest"
+"pipx:ansible-lint" = { version = "latest", uvx_args = "--with distlib" }
 uv = "latest"

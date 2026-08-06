@@ -118,3 +118,9 @@ jobs:
           COMMITLINT_FROM: ${{ forgejo.event.pull_request.base.sha }}
           COMMITLINT_TO: ${{ forgejo.event.pull_request.head.sha }}
         working-directory: ${{ steps.collection-metadata.outputs.checkout-path }}
+
+      - name: Upload build artifact
+        uses: https://data.forgejo.org/forgejo/upload-artifact@v4
+        with:
+          name: ${{ forgejo.event.repository.name }}-${{ env.FORGEJO_SHA }}
+          path: ${{ steps.collection-metadata.outputs.checkout-path }}/build/*
