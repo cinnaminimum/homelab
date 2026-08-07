@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include podman role as explicitly absent
+  vars:
+    podman_state: absent
+
+  ansible.builtin.include_role:
+    name: geraldyaya.ecstasy.podman
+
+- name: Get package facts
+
+  ansible.builtin.package_facts:
+
+- name: Assert that podman package is not installed
+
+  ansible.builtin.assert:
+    that: ansible_facts.packages.podman is not defined

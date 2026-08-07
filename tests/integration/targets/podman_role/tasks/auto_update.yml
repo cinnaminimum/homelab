@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include podman role with auto update explicitly enabled
+  vars:
+    podman_auto_update: true
+
+  ansible.builtin.include_role:
+    name: geraldyaya.ecstasy.podman
+
+- name: Get timer active state
+  register: podman_role_timer_active
+  changed_when: false
+
+  ansible.builtin.command:
+    argv: [systemctl, is-active, podman-auto-update.timer]
+
+- name: Assert that podman timer is active
+
+  ansible.builtin.assert:
+    that: podman_role_timer_active.stdout == 'active'
+
+- name: Get timer enabled state
+  register: podman_role_timer_enabled
+  changed_when: false
+
+  ansible.builtin.command:
+    argv: [systemctl, is-enabled, podman-auto-update.timer]
+
+- name: Assert that podman timer is enabled
+
+  ansible.builtin.assert:
+    that: podman_role_timer_enabled.stdout == 'enabled'

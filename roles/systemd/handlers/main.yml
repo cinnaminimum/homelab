@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Reload systemd
+  become: true
+
+  ansible.builtin.systemd:
+    daemon_reload: true

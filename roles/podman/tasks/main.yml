@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include install tasks
+  when: podman_state == 'present'
+
+  ansible.builtin.include_tasks:
+    file: install.yml
+
+- name: Include uninstall tasks
+  when: podman_state == 'absent'
+
+  ansible.builtin.include_tasks:
+    file: uninstall.yml

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Install podman packages
+  become: true
+
+  ansible.builtin.package:
+    name: podman
+
+- name: Copy xtc-podman.network file
+  become: true
+  notify: Reload systemd
+
+  ansible.builtin.copy:
+    src: xtc-podman.network
+    dest: /etc/containers/systemd/xtc-podman.network
+    mode: '644'
+
+- name: Manage auto update timer
+  become: true
+
+  ansible.builtin.systemd:
+    name: podman-auto-update.timer
+    enabled: '{{ podman_auto_update }}'
+    state: '{{ podman_auto_update | ansible.builtin.ternary("started", "stopped") }}'

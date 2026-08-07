@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/role-arg-spec.json
+
+argument_specs:
+  main:
+    short_description: A tool for managing OCI containers and pods
+    description: Install and configure Podman
+
+    options:
+      podman_auto_update:
+        description: Whether to enable the auto-update service/timer
+        type: bool
+        default: true
+
+      podman_state:
+        description: Whether the Podman package should be installed
+        type: str
+        default: present
+        choices: [present, absent]

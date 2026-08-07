@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta.json
+
+galaxy_info:
+  description: System and Service Manager
+
+  galaxy_tags:
+    - linux
+
+  author: Gerald Ya Ya
+  company: Roger's Place
+  issue_tracker_url: https://codeberg.org/GeraldYaYa/ecstasy/issues
+  license: GPL-3.0-only
+  min_ansible_version: "2.14"
+
+dependencies: []

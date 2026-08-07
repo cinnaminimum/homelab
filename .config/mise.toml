@@ -23,7 +23,7 @@ wait_for = ["ansible:galaxy:build"]
 
 [tasks."ansible:test:integration"]
 description = "Run ansible integration tests"
-run = "ansible-test integration --python 3.14"
+run = "ansible-test integration"
 alias = ["test:ansible:integration"]
 
 [tasks."ansible:test:sanity"]
@@ -88,7 +88,11 @@ description = "Run project commitlint wrapper"
 run = "uv run scripts/tasks/commitlint.py"
 
 [tasks.test]
-description = "Run tests"
+description = "Run (practically) all tests"
+depends = ["test:ansible:sanity", "test:ansible:units"]
+
+[tasks."test:all"]
+description = "Run (literally) all tests"
 depends = ["test:ansible"]
 
 [tasks."test:ansible"]

@@ -13,8 +13,10 @@ which requirements are needed.
 
 ## Included content
 
-<!--start collection content-->
-<!--end collection content-->
+### Roles
+
+- [podman](https://geraldyaya.codeberg.page/ecstasy/podman_role.html)
+- [systemd](https://geraldyaya.codeberg.page/ecstasy/systemd_role.html)
 
 ## Using this collection
 
@@ -74,6 +76,10 @@ See the
 ## Provenance
 
 Proudly written with 100% natural stupidity.
+
+## Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for more information.
 
 ## Licensing
 

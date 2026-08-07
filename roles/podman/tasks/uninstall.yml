@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Uninstall podman packages
+  become: true
+
+  ansible.builtin.package:
+    name: podman
+    state: absent
+
+- name: Remove xtc-podman.network file
+  become: true
+  notify: Reload systemd
+
+  ansible.builtin.file:
+    path: /etc/containers/systemd/xtc-podman.network
+    state: absent
