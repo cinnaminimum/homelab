@@ -128,3 +128,11 @@ jobs:
         with:
           name: ${{ forgejo.event.repository.name }}-${{ env.FORGEJO_SHA }}
           path: ${{ steps.collection-metadata.outputs.checkout-path }}/build/*
+
+      - name: Deploy docs
+        uses: https://codeberg.org/git-pages/action@v2
+        if: ${{ forge.ref == 'refs/heads/main' && forge.server_url == 'https://codeberg.org' }}
+        with:
+          site: https://${{ forge.repository_owner }}.codeberg.page/${{ forgejo.event.repository.name }}/
+          token: ${{ forge.token }}
+          source: ${{ steps.collection-metadata.outputs.checkout-path }}/build/docs/build/html/
