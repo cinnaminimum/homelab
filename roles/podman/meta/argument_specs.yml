@@ -36,3 +36,7 @@ argument_specs:
 
         ansible.builtin.include_role:
           name: geraldyaya.ecstasy.podman
+
+    author: Gerald Ya Ya
+
+    version_added: 0.0.0
