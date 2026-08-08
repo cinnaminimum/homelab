@@ -102,6 +102,7 @@ depends = ["test:ansible:integration", "test:ansible:sanity", "test:ansible:unit
 [tools]
 node = "latest"
 "npm:@commitlint/cli" = "latest"
+"pipx:ansible-creator" = "latest"
 "pipx:ansible-lint" = { version = "latest", uvx_args = "--with distlib" }
 "pipx:antsibull-docs" = "latest"
 uv = "latest"

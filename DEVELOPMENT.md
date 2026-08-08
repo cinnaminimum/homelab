@@ -19,3 +19,15 @@ The recommended approach is to run them in a dedicated test environment (e.g.
 throwaway debian VM) with `mise run test:ansible:integration -- --target
 ssh:user@testhost,python=3.xx`. Note that specifying the python interpreter
 version of the host is required.
+
+## Adding new content
+
+New content can be scaffolded with `ansible-creator`.
+
+### Adding a new role
+
+A new role can be scaffolded by running:
+
+```bash
+mise exec -- ansible-creator add resource role role_name
+```
