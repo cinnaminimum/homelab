@@ -1,7 +1,7 @@
 ---
 schemaVersion: 2.2.2
 metadata:
-  name: geraldyaya.ecstasy-f6ad0c37
+  name: cinnaminimum.homelab-f6ad0c37
 components:
   - name: tooling-container
     container:

@@ -17,7 +17,7 @@ wait_for = ["lint:ansible", "test:ansible:*"] # There is a concurrency bug
 
 [tasks."ansible:galaxy:install"]
 description = "Install collection"
-run = "ansible-galaxy collection install build/geraldyaya-ecstasy-*.tar.gz"
+run = "ansible-galaxy collection install build/cinnaminimum-homelab-*.tar.gz"
 alias = ["install"]
 wait_for = ["ansible:galaxy:build"]
 

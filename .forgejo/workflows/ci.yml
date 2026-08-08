@@ -81,7 +81,7 @@ jobs:
       - name: Set up mise
         uses: https://github.com/jdx/mise-action@v4
         with:
-          github_token: ${{ secrets.XTC_GITHUB_TOKEN }}
+          github_token: ${{ secrets.HOMELAB_GITHUB_TOKEN }}
           working_directory: ${{ steps.collection-metadata.outputs.checkout-path }}
 
       # `mise which` is used instead of `mise exec` because `mise exec` would

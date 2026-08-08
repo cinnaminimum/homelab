@@ -1,5 +1,5 @@
 ---
-name: Release geraldyaya.ecstasy
+name: Release cinnaminimum.homelab
 
 on: # yamllint disable-line rule:truthy
   release:

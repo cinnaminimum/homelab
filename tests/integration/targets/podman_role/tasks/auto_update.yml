@@ -5,7 +5,7 @@
     podman_auto_update: true
 
   ansible.builtin.include_role:
-    name: geraldyaya.ecstasy.podman
+    name: cinnaminimum.homelab.podman
 
 - name: Get timer active state
   register: podman_role_timer_active

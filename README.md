@@ -1,6 +1,6 @@
-# Geraldyaya Ecstasy Collection
+# Cinnaminimum Homelab Collection
 
-This repository contains the `geraldyaya.ecstasy` Ansible Collection.
+This repository contains the `cinnaminimum.homelab` Ansible Collection.
 
 <!--start requires_ansible-->
 <!--end requires_ansible-->
@@ -15,13 +15,13 @@ which requirements are needed.
 
 ### Roles
 
-- [podman](https://geraldyaya.codeberg.page/ecstasy/podman_role.html)
-- [systemd](https://geraldyaya.codeberg.page/ecstasy/systemd_role.html)
+- [podman](https://cinnaminimum.codeberg.page/homelab/podman_role.html)
+- [systemd](https://cinnaminimum.codeberg.page/homelab/systemd_role.html)
 
 ## Using this collection
 
 ```bash
-    ansible-galaxy collection install geraldyaya.ecstasy
+    ansible-galaxy collection install cinnaminimum.homelab
 ```
 
 You can also include it in a `requirements.yml` file and install it via
@@ -29,23 +29,23 @@ You can also include it in a `requirements.yml` file and install it via
 
 ```yaml
 collections:
-  - name: geraldyaya.ecstasy
+  - name: cinnaminimum.homelab
 ```
 
 To upgrade the collection to the latest available version, run the following
 command:
 
 ```bash
-ansible-galaxy collection install geraldyaya.ecstasy --upgrade
+ansible-galaxy collection install cinnaminimum.homelab --upgrade
 ```
 
 You can also install a specific version of the collection, for example, if you
 need to downgrade when something is broken in the latest version (please report
 an issue in this repository). Use the following syntax where `X.Y.Z` can be any
-[available version](https://galaxy.ansible.com/geraldyaya/ecstasy):
+[available version](https://galaxy.ansible.com/cinnaminimum/homelab):
 
 ```bash
-ansible-galaxy collection install geraldyaya.ecstasy:==X.Y.Z
+ansible-galaxy collection install cinnaminimum.homelab:==X.Y.Z
 ```
 
 See
@@ -55,7 +55,7 @@ for more details.
 ## Release notes
 
 See the
-[changelog](https://github.com/ansible-collections/geraldyaya.ecstasy/tree/main/CHANGELOG.rst).
+[changelog](https://github.com/ansible-collections/cinnaminimum.homelab/tree/main/CHANGELOG.rst).
 
 ## Roadmap
 

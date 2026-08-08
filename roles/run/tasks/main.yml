@@ -1,5 +1,5 @@
 ---
-# tasks file for geraldyaya.ecstasy.run
+# tasks file for cinnaminimum.homelab.run
 
 - name: Display the value of run_my_variable
   ansible.builtin.debug:

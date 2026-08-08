@@ -5,7 +5,7 @@
     podman_state: absent
 
   ansible.builtin.include_role:
-    name: geraldyaya.ecstasy.podman
+    name: cinnaminimum.homelab.podman
 
 - name: Get package facts
 

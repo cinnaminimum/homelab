@@ -21,21 +21,21 @@ argument_specs:
       - name: Install Podman with auto-update enabled
 
         ansible.builtin.include_role:
-          name: geraldyaya.ecstasy.podman
+          name: cinnaminimum.homelab.podman
 
       - name: Install Podman with auto-update disabled
         vars:
           podman_auto_update: false
 
         ansible.builtin.include_role:
-          name: geraldyaya.ecstasy.podman
+          name: cinnaminimum.homelab.podman
 
       - name: Uninstall Podman
         vars:
           podman_state: absent
 
         ansible.builtin.include_role:
-          name: geraldyaya.ecstasy.podman
+          name: cinnaminimum.homelab.podman
 
     author: Gerald Ya Ya
 

@@ -7,10 +7,10 @@
     name: podman
     state: absent
 
-- name: Remove xtc-podman.network file
+- name: Remove homelab-podman.network file
   become: true
   notify: Reload systemd
 
   ansible.builtin.file:
-    path: /etc/containers/systemd/xtc-podman.network
+    path: /etc/containers/systemd/homelab-podman.network
     state: absent

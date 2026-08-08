@@ -1,4 +1,4 @@
-"""Unit tests for geraldyaya.ecstasy."""
+"""Unit tests for cinnaminimum.homelab."""
 
 
 def test_basic() -> None:

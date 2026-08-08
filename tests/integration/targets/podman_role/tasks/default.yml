@@ -3,7 +3,7 @@
 - name: Include podman role without vars
 
   ansible.builtin.include_role:
-    name: geraldyaya.ecstasy.podman
+    name: cinnaminimum.homelab.podman
 
 - name: Get package facts
 

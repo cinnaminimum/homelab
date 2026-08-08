@@ -1,11 +1,11 @@
 [Unit]
 Description=A tool for managing OCI containers and pods
 
-Documentation=https://geraldyaya.codeberg.page/ecstasy
+Documentation=https://cinnaminimum.codeberg.page/homelab
 Documentation=https://podman.io/docs
 
 [Network]
-NetworkName=xtc-podman
+NetworkName=homelab-podman
 
 [Install]
 WantedBy=multi-user.target

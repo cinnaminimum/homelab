@@ -1,4 +1,4 @@
-# geraldyaya.ecstasy podman Role
+# cinnaminimum.homelab podman Role
 
 Install and configure Podman, a tool for managing OCI containers and pods.
 

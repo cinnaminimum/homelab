@@ -1,4 +1,4 @@
-# geraldyaya.ecstasy run Role
+# cinnaminimum.homelab run Role
 
 A brief description of the role goes here.
 
@@ -22,20 +22,20 @@ Including an example of how to use your role (for instance, with variables passe
 - name: Execute tasks on servers
   hosts: servers
   roles:
-    - role: geraldyaya.ecstasy.run
+    - role: cinnaminimum.homelab.run
       run_x: 42
 ```
 
 Another way to consume this role would be:
 
 ```yaml
-- name: Initialize the run role from geraldyaya.ecstasy
+- name: Initialize the run role from cinnaminimum.homelab
   hosts: servers
   gather_facts: false
   tasks:
     - name: Trigger invocation of run role
       ansible.builtin.include_role:
-        name: geraldyaya.ecstasy.run
+        name: cinnaminimum.homelab.run
       vars:
         run_x: 42
 ```

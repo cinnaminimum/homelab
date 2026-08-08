@@ -3,7 +3,7 @@ from subprocess import run
 from sys import stderr, stdin, stdout
 
 BUILD_DIR = "build/docs"
-COLLECTION = "geraldyaya.ecstasy"
+COLLECTION = "cinnaminimum.homelab"
 COPYRIGHT = "Gerald Ya Ya"
 
 
@@ -19,7 +19,7 @@ def main():
     if not pyproject.exists():
         with pyproject.open("w") as f:
             f.write("[project]\n")
-            f.write('name = "geraldyaya.ecstasy"\n')
+            f.write('name = "cinnaminimum.homelab"\n')
             f.write('version = "0.0.0"')
 
     # documentation_home_url changes the top-left-most link from / to index.html

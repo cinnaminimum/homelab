@@ -3,8 +3,8 @@
 
 # See https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
 
-namespace: "geraldyaya"
-name: "ecstasy"
+namespace: "cinnaminimum"
+name: "homelab"
 version: 0.0.0
 readme: README.md
 authors:
@@ -24,9 +24,9 @@ tags:
 dependencies:
   "ansible.utils": "*" # note: "*" selects the latest version available
 
-repository: https://codeberg.org/GeraldYaYa/ecstasy
-documentation: https://geraldyaya.codeberg.page/ecstasy
+repository: https://codeberg.org/cinnaminimum/homelab
+documentation: https://cinnaminimum.codeberg.page/homelab
 # homepage: http://example.com
-issues: https://codeberg.org/GeraldYaYa/ecstasy/issues
+issues: https://codeberg.org/cinnaminimum/homelab/issues
 
 manifest: {}
