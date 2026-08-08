@@ -13,26 +13,6 @@ Install and configure Podman, a tool for managing OCI containers and pods.
 
 - geraldyaya.ecstasy.systemd
 
-## Example Playbook
-
-```yaml
-- name: Install and configure Podman
-  hosts: servers
-  roles:
-    - role: geraldyaya.ecstasy.podman
-      vars:
-        podman_auto_update: true # can be omitted, defaults to true
-```
-
-```yaml
-- name: Uninstall Podman
-  hosts: servers
-  roles:
-    - role: geraldyaya.ecstasy.podman
-      vars:
-        podman_state: absent
-```
-
 ## Role Idempotency
 
 True

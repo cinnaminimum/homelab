@@ -16,3 +16,23 @@ argument_specs:
         type: str
         default: present
         choices: [present, absent]
+
+    examples: |
+      - name: Install Podman with auto-update enabled
+
+        ansible.builtin.include_role:
+          name: geraldyaya.ecstasy.podman
+
+      - name: Install Podman with auto-update disabled
+        vars:
+          podman_auto_update: false
+
+        ansible.builtin.include_role:
+          name: geraldyaya.ecstasy.podman
+
+      - name: Uninstall Podman
+        vars:
+          podman_state: absent
+
+        ansible.builtin.include_role:
+          name: geraldyaya.ecstasy.podman
