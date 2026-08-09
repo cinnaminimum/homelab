@@ -1,0 +1,26 @@
+# https://docs.ansible.com/projects/ansible/devel/community/development_process.html#changelogs-how-to
+#
+# https://docs.ansible.com/projects/antsibull-changelog/changelogs/#changelog-fragment-categories
+#
+# The full list of release categories is:
+#
+# - release_summary
+# - breaking_changes
+# - major_changes
+# - minor_changes
+# - removed_features
+# - deprecated_features
+# - security_fixes
+# - bugfixes
+# - known_issues
+# - trivial
+#
+# When writing a changelog entry, use the following format:
+#
+# - scope - description starting with a lowercase letter and ending with a
+# period at the very end. Multiple sentences are allowed
+# (https://github.com/reference/to/an/issue or, if there is no issue, reference
+# to a pull request itself).
+
+trivial:
+  - roles - add documentation site URLs to READMEs
