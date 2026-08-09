@@ -11,13 +11,13 @@ uv_venv_auto = "source"
 
 [tasks."ansible:galaxy:build"]
 description = "Build an Ansible collection artifact that can be published to Ansible Galaxy"
-run = "ansible-galaxy collection build --output-path build"
+run = "ansible-galaxy collection build --output-path build --force"
 alias = ["build"]
 wait_for = ["lint:ansible", "test:ansible:*"] # There is a concurrency bug
 
 [tasks."ansible:galaxy:install"]
 description = "Install collection"
-run = "ansible-galaxy collection install build/cinnaminimum-homelab-*.tar.gz"
+run = "ansible-galaxy collection install --force build/cinnaminimum-homelab-*.tar.gz"
 alias = ["install"]
 wait_for = ["ansible:galaxy:build"]
 
