@@ -1,1 +1,16 @@
-releases: {}
+ancestor: null
+releases:
+  0.0.0:
+    changes:
+      release_summary: Initial release
+    fragments:
+    - 1786310142_main.yml
+    objects:
+      role:
+      - description: A tool for managing OCI containers and pods
+        name: podman
+        namespace: null
+      - description: System and Service Manager
+        name: systemd
+        namespace: null
+    release_date: '2026-08-09'

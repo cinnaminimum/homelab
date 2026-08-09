@@ -1,6 +1,19 @@
-This should be updated by antsibull-changelog. Do not edit this manually!
+=============================================
+Cinnaminimum Homelab Collection Release Notes
+=============================================
 
-See https://github.com/ansible-community/antsibull-changelog/blob/main/docs/changelogs.rst for
-information on how to use antsibull-changelog.
+.. contents:: Topics
 
-Check out ``changelogs/config.yaml`` for its configuration. You need to change at least the ``title`` field in there.
+v0.0.0
+======
+
+Release Summary
+---------------
+
+Initial release
+
+New Roles
+---------
+
+- podman - A tool for managing OCI containers and pods
+- systemd - System and Service Manager
