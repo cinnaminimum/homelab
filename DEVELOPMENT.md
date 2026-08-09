@@ -31,3 +31,8 @@ A new role can be scaffolded by running:
 ```bash
 mise exec -- ansible-creator add resource role role_name
 ```
+
+## Releasing a new version
+
+Use `mise run release` to release a new version. This will pull the version
+number from `galaxy.yml`, which must be updated manually.

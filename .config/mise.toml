@@ -36,6 +36,25 @@ description = "Run ansible unit tests"
 run = "ansible-test units --python 3.14"
 alias = ["test:ansible:units"]
 
+[tasks."changelog:generate:fragment"]
+description = "Generate a changelog fragment"
+run = "uv run scripts/tasks/generate-changelog-fragment.py"
+
+[tasks."changelog:lint"]
+description = "Check changelog fragments for syntax errors"
+run = "antsibull-changelog lint"
+alias = ["lint:changelog"]
+
+[tasks."changelog:lint:all"]
+description = "Run all changelog linters"
+depends = ["lint:changelog", "lint:changelog-yaml"]
+alias = ["lint:changelog:all"]
+
+[tasks."changelog:lint-changelog-yaml"]
+description = "Check syntax of changelogs/changelog.yaml file"
+run = "antsibull-changelog lint-changelog-yaml changelogs/changelog.yaml"
+alias = ["lint:changelog-yaml"]
+
 [tasks.ci]
 description = "Run CI tasks"
 depends = ["build", "docs:build", "install", "lint:all", "test"]
@@ -73,7 +92,7 @@ depends = ["lint", "test"]
 
 [tasks.lint]
 description = "Run (practically) all linters"
-depends = ["lint:ansible", "lint:docs"]
+depends = ["lint:ansible", "lint:changelog:all", "lint:docs"]
 
 [tasks."lint:all"]
 description = "Run (literally) all linters"
@@ -86,6 +105,10 @@ run = "ansible-lint"
 [tasks."lint:commitlint"]
 description = "Run project commitlint wrapper"
 run = "uv run scripts/tasks/commitlint.py"
+
+[tasks.release]
+description = "Release a new version"
+run = "uv run scripts/tasks/release.py"
 
 [tasks.test]
 description = "Run (practically) all tests"
@@ -104,5 +127,6 @@ node = "latest"
 "npm:@commitlint/cli" = "latest"
 "pipx:ansible-creator" = "latest"
 "pipx:ansible-lint" = { version = "latest", uvx_args = "--with distlib" }
+"pipx:antsibull-changelog" = "latest"
 "pipx:antsibull-docs" = "latest"
 uv = "latest"

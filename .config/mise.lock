@@ -47,6 +47,10 @@ backend = "pipx:ansible-lint"
 [tools."pipx:ansible-lint".options]
 uvx_args = "--with distlib"
 
+[[tools."pipx:antsibull-changelog"]]
+version = "0.35.1"
+backend = "pipx:antsibull-changelog"
+
 [[tools."pipx:antsibull-docs"]]
 version = "2.25.0"
 backend = "pipx:antsibull-docs"

@@ -131,7 +131,7 @@ jobs:
 
       - name: Deploy docs
         uses: https://codeberg.org/git-pages/action@v2
-        if: ${{ forge.ref == 'refs/heads/main' && forge.server_url == 'https://codeberg.org' }}
+        if: ${{ forge.ref_type == 'tag' && forge.server_url == 'https://codeberg.org' }}
         with:
           site: https://${{ forge.repository_owner }}.codeberg.page/${{ forgejo.event.repository.name }}/
           token: ${{ forge.token }}
