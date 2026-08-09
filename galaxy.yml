@@ -29,4 +29,6 @@ documentation: https://cinnaminimum.codeberg.page/homelab
 # homepage: http://example.com
 issues: https://codeberg.org/cinnaminimum/homelab/issues
 
-manifest: {}
+manifest:
+  directives:
+    - recursive-include roles README.md
