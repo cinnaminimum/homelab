@@ -73,7 +73,7 @@ env.GIT_CONFIG_VALUE_0 = "false"
 description = "Build documentation"
 run = "uv run scripts/tasks/build-docs.py"
 alias = ["build:docs"]
-wait_for = ["install"]
+depends = ["build", "install"]
 
 [tasks."docs:lint"]
 description = "Run antsibull-docs linter"
