@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include homelab role
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.homelab
+
+- name: Stat /etc/homelab/ directory
+  register: homelab_role_stat
+
+  ansible.builtin.stat:
+    path: /etc/homelab/
+
+- name: Assert /etc/homelab/ directory exists
+
+  ansible.builtin.assert:
+    that: homelab_role_stat.stat.exists

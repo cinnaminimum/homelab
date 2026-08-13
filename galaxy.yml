@@ -23,6 +23,7 @@ tags:
 # TO-DO: maintain this list to reflect the collection's dependencies
 dependencies:
   "ansible.utils": "*" # note: "*" selects the latest version available
+  "containers.podman": "*"
 
 repository: https://codeberg.org/cinnaminimum/homelab
 documentation: https://cinnaminimum.codeberg.page/homelab

@@ -1,0 +1,8 @@
+[Unit]
+Description=The Cloud Native Application Proxy
+
+Documentation=https://doc.traefik.io/traefik/
+Documentation=https://cinnaminimum.codeberg.page/homelab/traefik_role.html
+
+[Volume]
+VolumeName=homelab-traefik-acme

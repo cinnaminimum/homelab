@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Restart homelab-traefik
+  become: true
+
+  ansible.builtin.systemd:
+    name: homelab-traefik-pod.service
+    state: restarted
+    enabled: true
+    daemon_reload: true

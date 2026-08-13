@@ -1,0 +1,215 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/role-arg-spec.json
+
+argument_specs:
+  main:
+    short_description: The Cloud Native Application Proxy
+    description:
+      - Install and configure Traefik as a Podman quadlet.
+      - Use O(traefik_state=present) (default) to install, or O(traefik_state=absent) to
+        uninstall.
+      - A C(traefik) user (and group) is created to run the service.
+      - A named volume C(homelab-traefik-acme) is mounted at C(/acme) for persistent storage of
+        certificates.
+      - The podman socket is added to the container read-only, idmapped to the traefik user.
+      - Configuration from O(traefik_config_file) and O(traefik_file_provider) is baked into the
+        container at C(/etc/traefik/).
+      - Configure the docker provider to automatically proxy other services from this collection.
+      - Use environment variables provided to O(traefik_env) to configure ACME DNS challenge.
+      - Ports C(80) (tcp) and C(443) (tcp and udp) are published by default. Others can be published
+        with a C(PublishPort) directive added to O(traefik_podman_quadlet_pod_extra).
+      - Use the C(homelab-traefik-pod.service) systemd unit to manage the Traefik pod.
+      - Use the C(homelab-traefik.service) systemd unit to manage the Traefik container.
+
+    options:
+      traefik_config_file:
+        type: str
+        default: |
+          entryPoints:
+            web:
+              address: :80
+          providers:
+            docker:
+              network: homelab-podman
+            file:
+              filename: /etc/traefik/provider.yml
+        description:
+          - Defines parameters that include entry points, providers, API/dashboard settings, and
+            logging levels.
+          - String content of C(/etc/traefik/traefik.yml).
+          - U(https://doc.traefik.io/traefik/reference/install-configuration/boot-environment/)
+
+      traefik_env:
+        type: dict
+        default: {}
+        description:
+          - Environment variables to set for Traefik.
+          - Structured data of host C(/etc/homelab/traefik.env) file, set as as an
+            C(EnvironmentFile) on the container quadlet.
+
+      traefik_file_provider:
+        type: str
+        default: '{}'
+        description:
+          - The file provider lets you define routing configuration.
+          - String content of C(/etc/traefik/provider.yml).
+          - U(https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/file/)
+
+      traefik_ip_address:
+        type: str
+        default: 0.0.0.0
+        description: The IP address on which to listen.
+
+      traefik_podman_quadlet_container_extra:
+        type: list
+        elements: str
+        default: []
+        description:
+          - List of extra directives to add to the Podman container quadlet.
+          - Lines are added to the C([Container]) section of the C(.container) file.
+
+      traefik_podman_quadlet_pod_extra:
+        type: list
+        default: []
+        elements: str
+        description:
+          - List of extra directives to add to the Podman pod quadlet.
+          - Lines are added to the C([Pod]) section of the C(.pod) file.
+
+      traefik_state:
+        type: str
+        choices:
+          - present
+          - absent
+        default: present
+        description:
+          - Whether to install (V(present)) or to uninstall (V(absent)).
+
+    examples: |
+      - name: Install Traefik without customisation
+
+        ansible.builtin.include_role:
+          name: traefik
+
+      ---
+
+      # Pod and containers are removed, but image and volume is not.
+      # Use `podman image prune` and `podman volume prune --force` to remove them, respectively.
+      - name: Uninstall Traefik
+        vars:
+          traefik_state: absent
+
+        ansible.builtin.include_role:
+          name: traefik
+
+      ---
+
+      - name: Add cloudflare token to podman secrets
+
+        containers.podman.podman_secret:
+          name: homelab-traefik-cloudflare-token
+          data: cf_...
+
+      - name: Configure ACME TLS certificate provisioning with Cloudflare DNS challenge
+        vars:
+          traefik_config_file: |
+            certificatesResolvers:
+              cloudflare:
+                acme:
+                  dnsChallenge:
+                    provider: cloudflare
+                    resolvers:
+                      - 1.1.1.1
+
+                  email: admin@example.com
+                  storage: /acme/acme.json
+
+            entryPoints:
+              web:
+                address: :80
+
+                http:
+                  redirections:
+                    entryPoint:
+                      to: websecure
+                      scheme: https
+                      permanent: true
+
+              websecure:
+                address: :443
+
+                http:
+                  tls:
+                    certResolver: cloudflare
+
+          traefik_env:
+            CLOUDFLARE_EMAIL: admin@example.com
+            CLOUDFLARE_DNS_API_TOKEN_FILE: /run/secrets/homelab-traefik-cloudflare-token
+            CLOUDFLARE_ZONE_API_TOKEN_FILE: /run/secrets/homelab-traefik-cloudflare-token
+
+          traefik_podman_quadlet_container_extra:
+            - Secret=homelab-traefik-cloudflare-token
+
+        ansible.builtin.include_role:
+          name: traefik
+
+      ---
+
+      - name: Configure custom file provider
+        vars:
+          traefik_config_file: |
+            # ...
+            providers:
+              file:
+                filename: /etc/traefik/provider.yml
+
+          traefik_file_provider: |
+            http:
+              routers:
+                # ...
+              services:
+                # ...
+                #
+
+        ansible.builtin.include_role:
+          name: traefik
+
+      ---
+
+      - name: Set labels on the Traefik container
+        vars:
+          traefik_config_file: |
+            # ...
+            providers:
+              # ...
+              docker:
+                # ...
+                exposedByDefault: false
+
+          # Disabling `exposedByDefault` as above affects both other services and Traefik itself
+          # so add a label to explicitly re-enable Traefik.
+          traefik_podman_quadlet_container_extra:
+            - Label=traefik.enable=true
+
+    seealso:
+      - name: Official Traefik documentation
+        link: https://doc.traefik.io/traefik/
+        description: Everything there is to know about Traefik
+
+      - name: Getting Started with Docker and Traefik
+        link: https://doc.traefik.io/traefik/getting-started/docker/
+        description: Official Traefik guide for getting started with Docker
+
+      - name: Install Configuration Options
+        link: https://doc.traefik.io/traefik/reference/install-configuration/configuration-options/
+        description: Index of all possible options for O(traefik_config_file)
+
+      - name: Traefik File Routing Configuration
+        link: https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/file/
+        description: Index of all possible options for O(traefik_file_provider)
+
+      - name: Traefik & ACME certificates resolver
+        link: https://doc.traefik.io/traefik/reference/install-configuration/tls/certificate-resolvers/acme/
+        description: Official Traefik ACME documentation
+
+    author: Gerald Ya Ya
+    version_added: 0.1.0

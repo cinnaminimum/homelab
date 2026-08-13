@@ -1,0 +1,3 @@
+FROM docker.io/traefik:latest
+COPY --chmod=440 --chown=0:{{ traefik_user_gid }} {{ traefik_config_file_name }} {{ traefik_config_file_path }}
+COPY --chmod=440 --chown=0:{{ traefik_user_gid }} {{ traefik_file_provider_file_name }} {{ traefik_file_provider_file_path }}

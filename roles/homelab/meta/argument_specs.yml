@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/role-arg-spec.json
+
+argument_specs:
+  main:
+    short_description: Homelab meta-role
+    description: Prepare for homelab roles
+
+    options: {}
+
+    author: Gerald Ya Ya
+    version_added: 0.1.0

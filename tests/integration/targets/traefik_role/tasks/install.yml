@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include traefik role with all defaults
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.traefik
+
+- name: Flush handlers
+
+  ansible.builtin.meta: flush_handlers
+
+- name: Get service facts
+  until: ansible_facts.services["homelab-traefik.service"].state == "running"
+
+  ansible.builtin.service_facts:
+
+- name: Assert traefik service is running
+
+  ansible.builtin.assert:
+    that: ansible_facts.services["homelab-traefik.service"].state == "running"
+
+- name: Get count of traefik processes running as traefik user
+  register: traefik_role_pgrep
+  changed_when: false
+
+  ansible.builtin.command:
+    argv: [pgrep, --euid, traefik, --count, traefik]
+
+- name: Assert traefik process runs as traefik user
+  ansible.builtin.assert:
+    that: traefik_role_pgrep.stdout | ansible.builtin.int > 0

@@ -1,0 +1,29 @@
+[Unit]
+Description=The Cloud Native Application Proxy
+
+Documentation=https://doc.traefik.io/traefik/
+Documentation=https://cinnaminimum.codeberg.page/homelab/traefik_role.html
+
+After=podman.socket
+Requires=podman.socket
+
+[Container]
+ContainerName=homelab-traefik
+Pod=homelab-traefik.pod
+
+Image=homelab-traefik.build
+AutoUpdate=registry
+
+AddCapability=CAP_NET_BIND_SERVICE
+
+User={{ traefik_user_uid }}
+Group={{ traefik_user_gid }}
+
+EnvironmentFile=/etc/homelab/traefik.env
+
+Volume=homelab-traefik-acme.volume:/acme
+Volume=%t/podman/podman.sock:/var/run/docker.sock:idmap=uids=0-{{ traefik_user_uid }}-1;gids=0-{{ traefik_user_gid }}-1,ro
+
+{% for line in traefik_podman_quadlet_container_extra %}
+{{ line }}
+{% endfor %}

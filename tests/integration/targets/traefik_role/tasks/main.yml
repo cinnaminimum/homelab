@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include tasks
+  loop:
+    - install
+    - uninstall
+    - config
+    - provider
+    - label
+
+  ansible.builtin.include_tasks:
+    file: '{{ item }}.yml'

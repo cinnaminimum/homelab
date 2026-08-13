@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Create traefik user
+  become: true
+
+  ansible.builtin.user:
+    name: traefik
+    system: true
+
+- name: Get traefik user info
+
+  ansible.builtin.getent:
+    database: passwd
+    key: traefik
+
+- name: Set traefik user facts
+  become: true
+
+  ansible.builtin.set_fact:
+    traefik_user_gid: '{{ ansible_facts.getent_passwd["traefik"][2] }}'
+    traefik_user_uid: '{{ ansible_facts.getent_passwd["traefik"][1] }}'
+
+- name: Ensure /etc/containers/systemd/homelab-traefik/ directory
+  become: true
+
+  ansible.builtin.file:
+    path: /etc/containers/systemd/homelab-traefik
+    state: directory
+    mode: '750'
+
+- name: Copy non-sensitive content
+  notify: Restart homelab-traefik
+  become: true
+  loop:
+    - content: '{{ traefik_config_file }}'
+      dest: /etc/containers/systemd/homelab-traefik/traefik.yml
+    - content: '{{ traefik_file_provider }}'
+      dest: /etc/containers/systemd/homelab-traefik/provider.yml
+  loop_control:
+    label: '{{ traefik_item.dest }}'
+    loop_var: traefik_item
+
+  ansible.builtin.copy:
+    content: '{{ traefik_item.content }}'
+    dest: '{{ traefik_item.dest }}'
+    mode: '644'
+
+- name: Copy non-sensitive files
+  notify: Restart homelab-traefik
+  become: true
+  loop:
+    - src: homelab-traefik.build
+      dest: /etc/containers/systemd/homelab-traefik.build
+    - src: homelab-traefik-acme.volume
+      dest: /etc/containers/systemd/homelab-traefik-acme.volume
+  loop_control:
+    label: '{{ traefik_item.src }}'
+    loop_var: traefik_item
+
+  ansible.builtin.copy:
+    src: '{{ traefik_item.src }}'
+    dest: '{{ traefik_item.dest }}'
+    mode: '644'
+
+- name: Process non-sensitive templates
+  notify: Restart homelab-traefik
+  become: true
+  loop:
+    - src: Containerfile.j2
+      dest: /etc/containers/systemd/homelab-traefik/Containerfile
+    - src: homelab-traefik.container.j2
+      dest: /etc/containers/systemd/homelab-traefik.container
+    - src: homelab-traefik.pod.j2
+      dest: /etc/containers/systemd/homelab-traefik.pod
+  loop_control:
+    label: '{{ traefik_item.src }}'
+    loop_var: traefik_item
+
+  ansible.builtin.template:
+    src: '{{ traefik_item.src }}'
+    dest: '{{ traefik_item.dest }}'
+    mode: '644'
+
+- name: Process sensitive templates
+  notify: Restart homelab-traefik
+  become: true
+  loop:
+    - src: traefik.env.j2
+      dest: /etc/homelab/traefik.env
+  loop_control:
+    label: '{{ traefik_item.src }}'
+    loop_var: traefik_item
+
+  ansible.builtin.template:
+    src: '{{ traefik_item.src }}'
+    dest: '{{ traefik_item.dest }}'
+    mode: '640'
+    owner: root
+    group: traefik

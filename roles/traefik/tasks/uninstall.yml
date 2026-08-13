@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Stop homelab-traefik
+  become: true
+
+  ansible.builtin.systemd:
+    name: homelab-traefik-pod.service
+    state: stopped
+
+- name: Remove traefik user
+  become: true
+
+  ansible.builtin.user:
+    name: traefik
+    state: absent
+
+- name: Find /etc/containers/systemd/homelab-traefik* files
+  register: traefik_find
+
+  ansible.builtin.find:
+    paths: /etc/containers/systemd/
+    patterns: homelab-traefik*
+    file_type: any
+
+- name: Remove /etc/containers/systemd/homelab-traefik* files
+  notify: Reload systemd
+  become: true
+  loop: '{{ traefik_find.files }}'
+  loop_control:
+    label: '{{ traefik_item.path }}'
+    loop_var: traefik_item
+
+  ansible.builtin.file:
+    path: '{{ traefik_item.path }}'
+    state: absent
+
+- name: Remove /etc/homelab/traefik.env file
+  become: true
+
+  ansible.builtin.file:
+    path: /etc/homelab/traefik.env
+    state: absent
+
+- name: Remove pod
+  become: true
+
+  containers.podman.podman_pod:
+    name: homelab-traefik
+    state: absent
+
+- name: Remove containers
+  become: true
+
+  containers.podman.podman_containers:
+    containers:
+      - name: homelab-traefik
+        state: absent
+      - name: homelab-traefik-infra
+        state: absent

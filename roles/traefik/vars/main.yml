@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json
+
+traefik_config_file_name: traefik.yml
+traefik_config_file_path: /etc/traefik/{{ traefik_config_file_name }}
+
+traefik_file_provider_file_name: provider.yml
+traefik_file_provider_file_path: /etc/traefik/{{ traefik_file_provider_file_name }}
+
+traefik_podman_network: homelab-podman.network

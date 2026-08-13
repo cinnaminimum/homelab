@@ -1,0 +1,23 @@
+[Unit]
+Description=The Cloud Native Application Proxy
+
+Documentation=https://doc.traefik.io/traefik/
+Documentation=https://cinnaminimum.codeberg.page/homelab/traefik_role.html
+
+[Pod]
+PodName=homelab-traefik
+
+Network=podman
+
+PublishPort={{ traefik_ip_address }}:80:80
+PublishPort={{ traefik_ip_address }}:443:443/tcp
+PublishPort={{ traefik_ip_address }}:443:443/udp
+
+{% for line in traefik_podman_quadlet_pod_extra %}
+{{ line }}
+{% endfor %}
+
+Network={{ traefik_podman_network }}
+
+[Install]
+WantedBy=multi-user.target

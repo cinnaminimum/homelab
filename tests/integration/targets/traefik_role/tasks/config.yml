@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include traefik role with test config
+  vars:
+    traefik_config_file: |
+      # {{ traefik_role_slug }}
+      providers:
+        file:
+          filename: /etc/traefik/provider.yml
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.traefik
+
+- name: Flush handlers
+
+  ansible.builtin.meta: flush_handlers
+
+- name: Wait for container
+  register: traefik_role_container_info
+  become: true
+  until: traefik_role_container_info.containers | length > 0
+
+  containers.podman.podman_container_info:
+    name: homelab-traefik
+
+- name: Get config file content
+  register: traefik_role_config
+  become: true
+
+  containers.podman.podman_container_exec:
+    name: homelab-traefik
+    argv: [cat, /etc/traefik/traefik.yml]
+
+- name: Assert config file content
+
+  ansible.builtin.assert:
+    that: traefik_role_config.stdout is search(traefik_role_slug)

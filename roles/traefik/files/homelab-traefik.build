@@ -1,0 +1,9 @@
+[Unit]
+Description=The Cloud Native Application Proxy
+
+Documentation=https://doc.traefik.io/traefik/
+Documentation=https://cinnaminimum.codeberg.page/homelab/traefik_role.html
+
+[Build]
+ImageTag=docker.io/traefik:latest
+SetWorkingDirectory=homelab-traefik

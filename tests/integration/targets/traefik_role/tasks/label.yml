@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include traefik role with test label
+  vars:
+    traefik_podman_quadlet_container_extra:
+      - 'Label=test={{ traefik_role_slug }}'
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.traefik
+
+- name: Flush handlers
+
+  ansible.builtin.meta: flush_handlers
+
+- name: Get container info
+  register: traefik_role_container_info
+  until: traefik_role_container_info.containers | ansible.builtin.length > 0
+  become: true
+
+  containers.podman.podman_container_info:
+    name: homelab-traefik
+
+- name: Assert label is applied
+
+  ansible.builtin.assert:
+    that: traefik_role_container_info.containers[0].Config.Labels.test == traefik_role_slug

@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include traefik role with absent state
+  vars:
+    traefik_state: absent
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.traefik
+
+- name: Flush handlers
+
+  ansible.builtin.meta: flush_handlers
+
+- name: Get traefik user info
+
+  ansible.builtin.getent:
+    database: passwd
+    key: traefik
+    fail_key: false
+
+- name: Assert traefik user is removed
+
+  ansible.builtin.assert:
+    that: ansible_facts.getent_passwd["traefik"] is none
+
+- name: Find /etc/containers/systemd/homelab-traefik* files
+  register: traefik_role_find
+
+  ansible.builtin.find:
+    path: /etc/containers/systemd
+    patterns: homelab-traefik*
+    file_type: any
+
+- name: Assert /etc/containers/systemd/homelab-traefik* files are removed
+
+  ansible.builtin.assert:
+    that: traefik_role_find.files | ansible.builtin.length == 0
+
+- name: Stat /etc/homelab/traefik.env file
+  register: traefik_env_stat
+
+  ansible.builtin.stat:
+    path: /etc/homelab/traefik.env
+
+- name: Assert /etc/homelab/traefik.env file is removed
+
+  ansible.builtin.assert:
+    that: traefik_env_stat.stat.exists is false
+
+- name: Get pod info
+  register: traefik_role_pod_info
+  become: true
+
+  containers.podman.podman_pod_info:
+    name: homelab-traefik
+
+- name: Assert pod is removed
+
+  ansible.builtin.assert:
+    that: traefik_role_pod_info.pods | ansible.builtin.length == 0
+
+- name: Get container info
+  register: traefik_role_container_info
+  become: true
+
+  containers.podman.podman_container_info:
+    name:
+      - homelab-traefik
+      - homelab-traefik-infra
+
+- name: Assert containers are removed
+
+  ansible.builtin.assert:
+    that: traefik_role_container_info.containers | length == 0
+
+- name: Get service facts
+
+  ansible.builtin.service_facts:
+
+- name: Assert homelab-traefik service is removed
+
+  ansible.builtin.assert:
+    that: '"homelab-traefik.service" not in ansible_facts.services'
