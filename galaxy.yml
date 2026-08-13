@@ -31,4 +31,4 @@ issues: https://codeberg.org/cinnaminimum/homelab/issues
 
 manifest:
   directives:
-    - recursive-include roles README.md
+    - include roles/*/README.md
