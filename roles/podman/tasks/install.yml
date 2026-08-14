@@ -15,6 +15,10 @@
     dest: /etc/containers/systemd/homelab-podman.network
     mode: '644'
 
+- name: Flush handlers
+
+  ansible.builtin.meta: flush_handlers
+
 - name: Manage auto update timer
   become: true
 
