@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/role-arg-spec.json
-
-argument_specs:
-  main:
-    short_description: System and Service Manager
-    description:
-      - Meta-role to manage systemd
-      - Provides a reload handler

@@ -5,7 +5,7 @@ Documentation=https://cinnaminimum.codeberg.page/homelab
 Documentation=https://podman.io/docs
 
 [Network]
-NetworkName=homelab-podman
+NetworkName=homelab-shared
 
 [Install]
 WantedBy=multi-user.target

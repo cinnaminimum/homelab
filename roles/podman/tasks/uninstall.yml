@@ -6,11 +6,3 @@
   ansible.builtin.package:
     name: podman
     state: absent
-
-- name: Remove homelab-podman.network file
-  become: true
-  notify: Reload systemd
-
-  ansible.builtin.file:
-    path: /etc/containers/systemd/homelab-podman.network
-    state: absent

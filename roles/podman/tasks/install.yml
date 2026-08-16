@@ -6,19 +6,6 @@
   ansible.builtin.package:
     name: podman
 
-- name: Copy homelab-podman.network file
-  become: true
-  notify: Reload systemd
-
-  ansible.builtin.copy:
-    src: homelab-podman.network
-    dest: /etc/containers/systemd/homelab-podman.network
-    mode: '644'
-
-- name: Flush handlers
-
-  ansible.builtin.meta: flush_handlers
-
 - name: Manage auto update timer
   become: true
 
