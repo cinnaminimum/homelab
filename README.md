@@ -15,8 +15,7 @@ which requirements are needed.
 
 ### Roles
 
-- [podman](https://cinnaminimum.codeberg.page/homelab/podman_role.html)
-- [systemd](https://cinnaminimum.codeberg.page/homelab/systemd_role.html)
+- [Traefik](https://cinnaminimum.codeberg.page/homelab/traefik_role.html)
 
 ## Using this collection
 
