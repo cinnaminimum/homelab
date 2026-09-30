@@ -10,6 +10,8 @@ jobs:
   ci:
     runs-on: codeberg-small-lazy
     container: catthehacker/ubuntu:act-latest
+    env:
+      MISE_ENV: ci
 
     steps:
       - name: Install dependencies

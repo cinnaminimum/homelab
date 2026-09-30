@@ -32,6 +32,10 @@ url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-darwin-x64.tar.gz"
 checksum = "sha256:f97ba75ead7720652f3925d9cf8661e083a28c6b98ea77acc83903d77a9dd688"
 url = "https://nodejs.org/dist/v25.2.1/node-v25.2.1-win-x64.zip"
 
+[[tools."npm:@ansible/ansible-language-server"]]
+version = "26.6.0"
+backend = "npm:@ansible/ansible-language-server"
+
 [[tools."npm:@commitlint/cli"]]
 version = "20.1.0"
 backend = "npm:@commitlint/cli"
@@ -54,6 +58,144 @@ backend = "pipx:antsibull-changelog"
 [[tools."pipx:antsibull-docs"]]
 version = "2.25.0"
 backend = "pipx:antsibull-docs"
+
+[[tools.ruff]]
+version = "0.16.9"
+backend = "aqua:astral-sh/ruff"
+
+[tools.ruff."platforms.linux-arm64"]
+checksum = "sha256:a13061e8f471b49c9d2aa284c32dd54a0e5534d702d1a44e1d7f4c875569586d"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586787931"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.linux-arm64-musl"]
+checksum = "sha256:40d9feb7210a6d984bb98b5f825afdcf36216ee464a884e26c104f97226c7713"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586787936"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.linux-x64"]
+checksum = "sha256:1bfbb819b5d4f9af501748862276b60e412d336034d99387691a4d4bce7a6f13"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586788051"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.linux-x64-musl"]
+checksum = "sha256:6a561ed4bc860472f7833dfb0f0b8285d3969fa627188c5678ea4ac2c462bbee"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586788060"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.macos-arm64"]
+checksum = "sha256:33d35394499094cf6eb90f730dc82f11c0fab05d176378ae4f67de985ecc4146"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586787913"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.macos-x64"]
+checksum = "sha256:e98ea259a021c87d3a1f8bf18639d2e32dcd45cb2ef1afcb41b13e295de1e2b3"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586788039"
+provenance = "github-attestations"
+
+[tools.ruff."platforms.windows-x64"]
+checksum = "sha256:fe5eb06b2f185b0d8035e17df9df0c831e59b3c98f11170206500650218a0b76"
+url = "https://github.com/astral-sh/ruff/releases/download/0.16.9/ruff-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/ruff/releases/assets/586788044"
+provenance = "github-attestations"
+
+[[tools.tombi]]
+version = "1.5.8"
+backend = "aqua:tombi-toml/tombi"
+
+[tools.tombi."platforms.linux-arm64"]
+checksum = "sha256:9785f7516026ac90a83bd55c6e2f0096b27d1a04bc5b8812b2501122136e5a16"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417418"
+provenance = "github-attestations"
+
+[tools.tombi."platforms.linux-arm64-musl"]
+checksum = "sha256:9785f7516026ac90a83bd55c6e2f0096b27d1a04bc5b8812b2501122136e5a16"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417418"
+provenance = "github-attestations"
+
+[tools.tombi."platforms.linux-x64"]
+checksum = "sha256:4cb72901494b79e13db09bba44ea15fb0f7ddf40b2ff5d0aa0b83e5a1e17a51d"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417472"
+provenance = "github-attestations"
+
+[tools.tombi."platforms.linux-x64-musl"]
+checksum = "sha256:4cb72901494b79e13db09bba44ea15fb0f7ddf40b2ff5d0aa0b83e5a1e17a51d"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417472"
+provenance = "github-attestations"
+
+[tools.tombi."platforms.macos-arm64"]
+checksum = "sha256:68261057cb8c3d1e0d675fb713ebd765b8a37cb03c2e5e11a3a2ad0e7b1fb270"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417417"
+provenance = "github-attestations"
+
+[tools.tombi."platforms.macos-x64"]
+checksum = "sha256:8f2bdef0d767dc096c92ca26705934792d6b456df29669d41e10978b51e11574"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417420"
+provenance = "github-attestations"
+
+[tools.tombi."platforms.windows-x64"]
+checksum = "sha256:cd123e9dee675458f541365e5f30bba313f8a8daf648760bdaa00caece19822f"
+url = "https://github.com/tombi-toml/tombi/releases/download/v1.5.8/tombi-cli-1.5.8-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/tombi-toml/tombi/releases/assets/594417461"
+provenance = "github-attestations"
+
+[[tools.ty]]
+version = "0.0.84"
+backend = "aqua:astral-sh/ty"
+
+[tools.ty."platforms.linux-arm64"]
+checksum = "sha256:d575243e0586742ae0e9186441358bd7e57e8160e319b3afb781430126762a39"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999358"
+provenance = "github-attestations"
+
+[tools.ty."platforms.linux-arm64-musl"]
+checksum = "sha256:e0f1cbe08fad84a164dbac8945730a349d506836f185afdb927e16395136d091"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999372"
+provenance = "github-attestations"
+
+[tools.ty."platforms.linux-x64"]
+checksum = "sha256:336bb36b7e917d844b8b16925d373b4614b326e452c881ff4ed6bc5904b65185"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999537"
+provenance = "github-attestations"
+
+[tools.ty."platforms.linux-x64-musl"]
+checksum = "sha256:da32bd4cbfe124f1df974e78cc163037c5d4b12ceec532b7ed785b5b74a76cd1"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999548"
+provenance = "github-attestations"
+
+[tools.ty."platforms.macos-arm64"]
+checksum = "sha256:c65c09f27bcef726c0b043dcee8d0f1e578bd1936799e5bc447235cbc3e19d91"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999334"
+provenance = "github-attestations"
+
+[tools.ty."platforms.macos-x64"]
+checksum = "sha256:3891e5509d306721cee4dd4e69b94535dbd96371af7ec3b734ee65f25b167ae4"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999520"
+provenance = "github-attestations"
+
+[tools.ty."platforms.windows-x64"]
+checksum = "sha256:e4b3c7cd30ff8b4ee4c2a62621f293341ad3c89fb3e7c6e4d2686150a4dbcf08"
+url = "https://github.com/astral-sh/ty/releases/download/0.0.84/ty-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/ty/releases/assets/585999524"
+provenance = "github-attestations"
 
 [[tools.uv]]
 version = "0.11.21"

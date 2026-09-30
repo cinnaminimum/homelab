@@ -1,0 +1,9 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[settings]
+disable_tools = [
+  "npm:@ansible/ansible-language-server",
+  "ruff",
+  "tombi",
+  "ty",
+]
