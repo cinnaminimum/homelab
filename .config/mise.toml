@@ -16,7 +16,7 @@ uv_venv_auto = "source"
 description = "Build an Ansible collection artifact that can be published to Ansible Galaxy"
 run = "ansible-galaxy collection build --output-path build --force"
 alias = ["build"]
-wait_for = ["lint:ansible", "test:ansible:*"] # There is a concurrency bug
+wait_for = ["lint:ansible", "test:ansible:*"]  # There is a concurrency bug
 
 [tasks."ansible:galaxy:install"]
 description = "Install collection"
