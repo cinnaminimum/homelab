@@ -1,0 +1,4 @@
+#:schema https://www.schemastore.org/tombi.json
+
+[format.rules]
+key-value-equals-sign-alignment = false

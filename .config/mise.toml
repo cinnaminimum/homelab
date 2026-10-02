@@ -60,7 +60,7 @@ alias = ["lint:changelog-yaml"]
 
 [tasks.ci]
 description = "Run CI tasks"
-depends = ["build", "docs:build", "install", "lint:all", "test"]
+depends = ["build", "docs:build", "install", "format:check", "lint:all", "test"]
 
 [tasks.commitlint]
 description = "Run commitlint with project configuration"
@@ -81,6 +81,14 @@ run = "antsibull-docs lint-collection-docs --plugin-docs --check-extra-docs-refs
 alias = ["lint:docs"]
 wait_for = ["install"]
 
+[tasks."format"]
+description = "Run all file formatters"
+depends = ["format:tombi"]
+
+[tasks."format:check"]
+description = "Run all file formatters in check mode"
+depends = ["format:check:tombi"]
+
 [tasks."git:commit-msg"]
 description = "Git commit-msg hook"
 run = "mise run commitlint -- --edit $1"
@@ -91,11 +99,11 @@ run = "git config --local core.hooksPath scripts/githooks"
 
 [tasks."git:pre-commit"]
 description = "Git pre-commit hook"
-depends = ["lint", "test"]
+depends = ["format:check", "lint", "test"]
 
 [tasks.lint]
 description = "Run (practically) all linters"
-depends = ["lint:ansible", "lint:changelog:all", "lint:docs"]
+depends = ["lint:ansible", "lint:changelog:all", "lint:docs", "lint:tombi"]
 
 [tasks."lint:all"]
 description = "Run (literally) all linters"
@@ -124,6 +132,21 @@ depends = ["test:ansible"]
 [tasks."test:ansible"]
 description = "Run ansible tests"
 depends = ["test:ansible:integration", "test:ansible:sanity", "test:ansible:units"]
+
+[tasks."tombi:format"]
+description = "Format toml files with tombi"
+run = "tombi format"
+alias = ["format:tombi"]
+
+[tasks."tombi:format:check"]
+description = "Check format of toml files with tombi"
+run = "tombi format --check"
+alias = ["format:check:tombi"]
+
+[tasks."tombi:lint"]
+description = "Lint toml files with tombi"
+run = "tombi lint"
+alias = ["lint:tombi"]
 
 [tools]
 node = "latest"
