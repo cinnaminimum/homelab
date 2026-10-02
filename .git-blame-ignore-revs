@@ -3,3 +3,6 @@
 
 # 2026-10-01 | style: Add whitespace to comment
 1901f5bf7e39528cdf3bf210ea02123b9771231d
+
+# 2026-10-01 | style: Format pyproject.toml with tombi
+52861bf23c15fa17a14b4f2cae6670f88d5db870
