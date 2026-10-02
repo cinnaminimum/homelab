@@ -1,3 +1,11 @@
+[dependency-groups]
+dev = [
+  "ansible-core>=2.21.2",
+  "distlib>=0.4.3",
+  "pytest>=9.1.1",
+  "pytest-xdist>=3.8.0",
+]
+
 [tool.black]
 line-length = 100
 
@@ -5,11 +13,3 @@ line-length = 100
 addopts = ["-vvv", "-n", "2", "--log-level", "WARNING", "--color", "yes"]
 filterwarnings = ["ignore:AnsibleCollectionFinder has already been configured"]
 testpaths = ["tests"]
-
-[dependency-groups]
-dev = [
-    "ansible-core>=2.21.2",
-    "distlib>=0.4.3",
-    "pytest>=9.1.1",
-    "pytest-xdist>=3.8.0",
-]
