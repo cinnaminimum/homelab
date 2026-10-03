@@ -6,3 +6,6 @@
 
 # 2026-10-01 | style: Format pyproject.toml with tombi
 52861bf23c15fa17a14b4f2cae6670f88d5db870
+
+# 2026-10-03 | style: Format python files with ruff
+02570b5cdb404dc4233dcf007b6fdccf53c75d03
