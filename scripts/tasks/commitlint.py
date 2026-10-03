@@ -33,7 +33,9 @@ def main(args_in: list[str]) -> None:
         "GIT_CONFIG_VALUE_0": "false",
     }
 
-    process = run(args_out, env=env, stdin=stdin, stdout=stdout, stderr=stderr, check=False)
+    process = run(
+        args_out, env=env, stdin=stdin, stdout=stdout, stderr=stderr, check=False
+    )
     exit(process.returncode)
 
 

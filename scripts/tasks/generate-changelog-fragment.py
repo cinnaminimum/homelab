@@ -30,7 +30,9 @@ CONTENT = """
 
 
 def main():
-    process = run(["git", "branch", "--show-current"], check=True, capture_output=True, text=True)
+    process = run(
+        ["git", "branch", "--show-current"], check=True, capture_output=True, text=True
+    )
     filename = f"{int(time())}_{process.stdout.rstrip()}.yml"
     path = Path("changelogs", "fragments", filename)
     path.write_text(CONTENT.lstrip())

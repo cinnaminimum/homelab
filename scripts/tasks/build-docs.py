@@ -24,19 +24,21 @@ def main():
 
     # documentation_home_url changes the top-left-most link from / to index.html
     # https://github.com/ansible-community/sphinx_ansible_theme/blob/eaaabfbba3e8fd1ed5d2ebf6a15f3fcf23974315/src/sphinx_ansible_theme/extrabody.html#L20
-    _run([
-        "antsibull-docs",
-        "sphinx-init",
-        "--use-current",
-        "--squash-hierarchy",
-        "--extra-html-theme-options",
-        "documentation_home_url=index.html",
-        "--copyright",
-        COPYRIGHT,
-        "--dest-dir",
-        BUILD_DIR,
-        COLLECTION,
-    ])
+    _run(
+        [
+            "antsibull-docs",
+            "sphinx-init",
+            "--use-current",
+            "--squash-hierarchy",
+            "--extra-html-theme-options",
+            "documentation_home_url=index.html",
+            "--copyright",
+            COPYRIGHT,
+            "--dest-dir",
+            BUILD_DIR,
+            COLLECTION,
+        ]
+    )
 
     venv = build_dir / ".venv"
     if not venv.exists():
