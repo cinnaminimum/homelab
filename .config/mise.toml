@@ -81,10 +81,6 @@ run = "antsibull-docs lint-collection-docs --plugin-docs --check-extra-docs-refs
 alias = ["lint:docs"]
 wait_for = ["install"]
 
-[tasks."format"]
-description = "Run all file formatters"
-depends = ["format:tombi"]
-
 [tasks."format:check"]
 description = "Run all file formatters in check mode"
 depends = ["format:check:tombi"]
@@ -132,11 +128,6 @@ depends = ["test:ansible"]
 [tasks."test:ansible"]
 description = "Run ansible tests"
 depends = ["test:ansible:integration", "test:ansible:sanity", "test:ansible:units"]
-
-[tasks."tombi:format"]
-description = "Format toml files with tombi"
-run = "tombi format"
-alias = ["format:tombi"]
 
 [tasks."tombi:format:check"]
 description = "Check format of toml files with tombi"
