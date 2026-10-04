@@ -1,14 +1,10 @@
 # sample_action.py - A custom action plugin for Ansible.
 # Author: Your Name
 # License: GPL-3.0-or-later
-# pylint: disable=E0401
-
-from __future__ import absolute_import, annotations, division, print_function
-
-__metaclass__ = type  # pylint: disable=C0103
 
 from typing import TYPE_CHECKING
-from ansible.plugins.action import ActionBase  # type: ignore
+
+from ansible.plugins.action import ActionBase
 
 try:
     from ansible_collections.ansible.utils.plugins.module_utils.common.argspec_validate import (  # type: ignore
@@ -22,7 +18,7 @@ except ImportError:
     DOCUMENTATION = None
 
 if TYPE_CHECKING:
-    from typing import Optional, Dict, Any
+    from typing import Any
 
 
 class ActionModule(ActionBase):  # type: ignore[misc]
@@ -31,7 +27,7 @@ class ActionModule(ActionBase):  # type: ignore[misc]
     A custom action plugin for Ansible.
     """
 
-    def _check_argspec(self, result: dict[str, Any]) -> None:
+    def _check_argspec(self, result: "dict[str, Any]") -> None:
         if AnsibleArgSpecValidator is None:
             result["failed"] = True
             result["msg"] = "ansible.utils is not installed"
@@ -50,9 +46,9 @@ class ActionModule(ActionBase):  # type: ignore[misc]
 
     def run(
         self,
-        tmp: Optional[str] = None,
-        task_vars: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        tmp: str | None = None,
+        task_vars: "dict[str, Any] | None" = None,
+    ) -> "dict[str, Any]":
         """
         Executes the action plugin.
 
@@ -66,11 +62,11 @@ class ActionModule(ActionBase):  # type: ignore[misc]
         # Get the task arguments
         if task_vars is None:
             task_vars = {}
-        result: Dict[str, Any] = {}
+        result: dict[str, Any] = {}
         warnings: list[str] = []
 
         # Example processing logic - Replace this with actual action code
-        result = super(ActionModule, self).run(tmp, task_vars)
+        result = super().run(tmp, task_vars)
         self._check_argspec(result)
 
         # Copy the task arguments

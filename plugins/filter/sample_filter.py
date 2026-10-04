@@ -2,16 +2,10 @@
 # Author: Your Name
 # License: GPL-3.0-or-later
 
-from __future__ import absolute_import, annotations, division, print_function
-
-
-__metaclass__ = type  # pylint: disable=C0103
-
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
-    from typing import Callable
+    from collections.abc import Callable
 
 
 DOCUMENTATION = """
@@ -51,7 +45,7 @@ def _sample_filter(name: str) -> str:
 class FilterModule:
     """filter plugin."""
 
-    def filters(self) -> dict[str, Callable[[str], str]]:
+    def filters(self) -> "dict[str, Callable[[str], str]]":
         """Map filter plugin names to their functions.
 
         Returns:

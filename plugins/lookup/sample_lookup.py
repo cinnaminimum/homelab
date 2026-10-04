@@ -1,6 +1,5 @@
 # sample_lookup.py - A custom lookup plugin for Ansible.
 
-# pylint: disable=E0401
 # sample_lookup.py - A custom lookup plugin for Ansible.
 # Author: Your Name (@username)
 # Copyright 2020 Red Hat
@@ -34,11 +33,11 @@ _list:
   type: list
 """
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
-from ansible.errors import AnsibleError  # type: ignore
-from ansible.plugins.lookup import LookupBase  # type: ignore
-from ansible.utils.display import Display  # type: ignore
+from ansible.errors import AnsibleError
+from ansible.plugins.lookup import LookupBase
+from ansible.utils.display import Display
 
 display = Display()
 
@@ -51,9 +50,9 @@ class LookupModule(LookupBase):  # type: ignore[misc]
 
     def run(
         self,
-        terms: List[str],
-        variables: Optional[Dict[str, Any]] = None,
-        **kwargs: Dict[str, Any],
+        terms: list[str],
+        variables: dict[str, Any] | None = None,
+        **kwargs: dict[str, Any],
     ) -> list[str]:
         """
         Run the lookup with the specified terms.
