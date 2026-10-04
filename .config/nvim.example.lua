@@ -42,6 +42,14 @@ H.setup_lsp = function()
     return
   end
 
+  vim.lsp.config('ruff', {
+    init_options = {
+      settings = {
+        configuration = ".config/ruff.toml",
+      },
+    },
+  })
+
   vim.lsp.enable({
     "ansiblels",
     "ruff",

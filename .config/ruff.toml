@@ -1,0 +1,4 @@
+#:schema https://www.schemastore.org/ruff.json
+
+[lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true

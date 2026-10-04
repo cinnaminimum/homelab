@@ -83,7 +83,7 @@ wait_for = ["install"]
 
 [tasks."format:check"]
 description = "Run all file formatters in check mode"
-depends = ["format:check:tombi"]
+depends = ["format:check:ruff", "format:check:tombi"]
 
 [tasks."git:commit-msg"]
 description = "Git commit-msg hook"
@@ -99,7 +99,7 @@ depends = ["format:check", "lint", "test"]
 
 [tasks.lint]
 description = "Run (practically) all linters"
-depends = ["lint:ansible", "lint:changelog:all", "lint:docs", "lint:tombi"]
+depends = ["lint:ansible", "lint:changelog:all", "lint:docs", "lint:ruff", "lint:tombi"]
 
 [tasks."lint:all"]
 description = "Run (literally) all linters"
@@ -116,6 +116,20 @@ run = "uv run scripts/tasks/commitlint.py"
 [tasks.release]
 description = "Release a new version"
 run = "uv run scripts/tasks/release.py"
+
+[tasks.ruff]
+description = "Run ruff with project settings"
+run = "ruff --config .config/ruff.toml"
+
+[tasks."ruff:format:check"]
+description = "Check python file formatting with ruff"
+run = "mise run ruff -- format --check"
+alias = ["format:check:ruff"]
+
+[tasks."ruff:lint"]
+description = "Lint python files with ruff"
+run = "mise run ruff -- check"
+alias = ["lint:ruff"]
 
 [tasks.test]
 description = "Run (practically) all tests"
