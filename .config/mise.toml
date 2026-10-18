@@ -99,7 +99,7 @@ depends = ["format:check", "lint", "test"]
 
 [tasks.lint]
 description = "Run (practically) all linters"
-depends = ["lint:ansible", "lint:changelog:all", "lint:docs", "lint:ruff", "lint:tombi"]
+depends = ["lint:ansible", "lint:changelog:all", "lint:docs", "lint:ruff", "lint:tombi", "lint:ty"]
 
 [tasks."lint:all"]
 description = "Run (literally) all linters"
@@ -152,6 +152,11 @@ alias = ["format:check:tombi"]
 description = "Lint toml files with tombi"
 run = "tombi lint"
 alias = ["lint:tombi"]
+
+[tasks."ty:lint"]
+description = "Type-check python files with ty"
+run = "ty check"
+alias = ["lint:ty"]
 
 [tools]
 node = "latest"

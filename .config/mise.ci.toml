@@ -3,5 +3,4 @@
 [settings]
 disable_tools = [
   "npm:@ansible/ansible-language-server",
-  "ty",
 ]
