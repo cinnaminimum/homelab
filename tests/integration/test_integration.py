@@ -1,6 +1,6 @@
 """Tests for molecule scenarios."""
 
-from pytest_ansible.molecule import MoleculeScenario
+from pytest_ansible.molecule import MoleculeScenario  # ty: ignore[unresolved-import]
 
 
 def test_integration(molecule_scenario: MoleculeScenario) -> None:
