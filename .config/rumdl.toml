@@ -1,0 +1,24 @@
+#:schema https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/rumdl.json
+# tombi: format.rules.table-keys-order = "ascending"
+
+[global]
+exclude = ["LICENSE.md"]
+extend-enable = [
+  "heading-anchor-collision",
+  "heading-capitalization",
+  "invisible-characters",
+  "paragraph-continuation-indent",
+  "table-format",
+  "no-empty-sections",
+  "quotes-dashes",
+  "toc-validation",
+  "unused-disable-comment",
+]
+line-length = 100
+
+[heading-capitalization]
+min-level = 2
+style = "sentence-case"
+
+[no-multiple-consecutive-spaces]
+allow-sentence-double-space = true

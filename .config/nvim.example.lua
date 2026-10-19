@@ -17,6 +17,7 @@ H.setup_conform = function()
   end
 
   conform.formatters_by_ft = conform.formatters_by_ft or {}
+  conform.formatters_by_ft["markdown"] = { "rumdl" }
   conform.formatters_by_ft["python"] = { "ruff_fix", "ruff_organize_imports", "ruff_format" }
   conform.formatters_by_ft["toml"] = { "tombi" }
   conform.formatters_by_ft["yaml.ansible"] = { "ansible-lint" }
@@ -53,6 +54,7 @@ H.setup_lsp = function()
   vim.lsp.enable({
     "ansiblels",
     "ruff",
+    "rumdl",
     "tombi",
     "ty",
     "yamlls",

@@ -83,7 +83,7 @@ wait_for = ["install"]
 
 [tasks."format:check"]
 description = "Run all file formatters in check mode"
-depends = ["format:check:ruff", "format:check:tombi"]
+depends = ["format:check:ruff", "format:check:rumdl", "format:check:tombi"]
 
 [tasks."git:commit-msg"]
 description = "Git commit-msg hook"
@@ -99,7 +99,15 @@ depends = ["format:check", "lint", "test"]
 
 [tasks.lint]
 description = "Run (practically) all linters"
-depends = ["lint:ansible", "lint:changelog:all", "lint:docs", "lint:ruff", "lint:tombi", "lint:ty"]
+depends = [
+  "lint:ansible",
+  "lint:changelog:all",
+  "lint:docs",
+  "lint:ruff",
+  "lint:rumdl",
+  "lint:tombi",
+  "lint:ty"
+]
 
 [tasks."lint:all"]
 description = "Run (literally) all linters"
@@ -130,6 +138,16 @@ alias = ["format:check:ruff"]
 description = "Lint python files with ruff"
 run = "mise run ruff -- check"
 alias = ["lint:ruff"]
+
+[tasks."rumdl:format:check"]
+description = "Check markdown file formatting with rumdl"
+run = "rumdl fmt --check"
+alias = ["format:check:rumdl"]
+
+[tasks."rumdl:lint"]
+description = "Lint markdown files with rumdl"
+run = "rumdl check"
+alias = ["lint:rumdl"]
 
 [tasks.test]
 description = "Run (practically) all tests"
@@ -167,6 +185,7 @@ node = "latest"
 "pipx:antsibull-changelog" = "latest"
 "pipx:antsibull-docs" = "latest"
 ruff = "latest"
+rumdl = "latest"
 tombi = "latest"
 ty = "latest"
 uv = "latest"
