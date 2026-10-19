@@ -2,3 +2,4 @@
 
 [format.rules]
 key-value-equals-sign-alignment = false
+line-width = 100
