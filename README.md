@@ -13,6 +13,9 @@ which requirements are needed.
 
 ## Included content
 
+See the [documentation](https://cinnaminimum.codeberg.page/homelab/) for the full list of included
+content.
+
 ### Roles
 
 - [Traefik](https://cinnaminimum.codeberg.page/homelab/traefik_role.html)
@@ -55,10 +58,6 @@ for more details.
 
 See the
 [changelog](https://github.com/ansible-collections/cinnaminimum.homelab/tree/main/CHANGELOG.rst).
-
-## Roadmap
-
-<!-- Optional. Include the roadmap for this collection, and the proposed release/versioning strategy so users can anticipate the upgrade/update cycle. -->
 
 ## More information
 
