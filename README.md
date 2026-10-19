@@ -56,8 +56,7 @@ for more details.
 
 ## Release notes
 
-See the
-[changelog](https://github.com/ansible-collections/cinnaminimum.homelab/tree/main/CHANGELOG.rst).
+See the [changelog](CHANGELOG.rst).
 
 ## More information
 
