@@ -11,7 +11,7 @@ authors:
   - Gerald Ya Ya
 
 description: Install and configure homelab apps as quadlets with ansible
-license_file: LICENSE
+license_file: LICENSE.md
 
 tags:
   - application
