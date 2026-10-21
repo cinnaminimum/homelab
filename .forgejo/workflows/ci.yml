@@ -132,7 +132,7 @@ jobs:
           path: ${{ steps.collection-metadata.outputs.checkout-path }}/build/*
 
       - name: Deploy docs
-        uses: https://codeberg.org/git-pages/action@v2
+        uses: https://codeberg.org/git-pages/action@v2.2.0
         if: ${{ forge.ref_type == 'tag' && forge.server_url == 'https://codeberg.org' }}
         with:
           site: https://${{ forge.repository_owner }}.codeberg.page/${{ forgejo.event.repository.name }}/
