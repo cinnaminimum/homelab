@@ -1,8 +1,10 @@
 local M = {}
 
-M.augroup = vim.api.nvim_create_augroup("ProjectConfig", {})
+M.augroup = nil
 
 M.setup = function()
+  M.augroup = vim.api.nvim_create_augroup("ProjectConfig", {})
+
   M.setup_conform()
   M.setup_lint()
   M.setup_lsp()
