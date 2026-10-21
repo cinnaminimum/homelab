@@ -5,11 +5,16 @@ M.augroup = nil
 M.setup = function()
   M.augroup = vim.api.nvim_create_augroup("ProjectConfig", {})
 
+  M.setup_ansible()
   M.setup_conform()
   M.setup_lint()
   M.setup_lsp()
-  M.setup_plugins()
   M.setup_treesitter()
+end
+
+M.setup_ansible = function()
+  vim.pack.add({ "https://github.com/pearofducks/ansible-vim" })
+  require("ansible").setup()
 end
 
 M.setup_conform = function()
@@ -55,11 +60,6 @@ M.setup_lsp = function()
     "ty",
     "yamlls",
   })
-end
-
-M.setup_plugins = function()
-  vim.pack.add({ "https://github.com/pearofducks/ansible-vim" })
-  require("ansible").setup()
 end
 
 M.setup_treesitter = function()
