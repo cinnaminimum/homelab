@@ -1,16 +1,16 @@
-local H = {}
+local M = {}
 
-H.augroup = vim.api.nvim_create_augroup("ProjectConfig", {})
+M.augroup = vim.api.nvim_create_augroup("ProjectConfig", {})
 
-H.setup = function()
-  H.setup_conform()
-  H.setup_lint()
-  H.setup_lsp()
-  H.setup_plugins()
-  H.setup_treesitter()
+M.setup = function()
+  M.setup_conform()
+  M.setup_lint()
+  M.setup_lsp()
+  M.setup_plugins()
+  M.setup_treesitter()
 end
 
-H.setup_conform = function()
+M.setup_conform = function()
   local status, conform = pcall(require, "conform")
   if not status then
     return
@@ -23,7 +23,7 @@ H.setup_conform = function()
   conform.formatters_by_ft["yaml.ansible"] = { "ansible-lint" }
 end
 
-H.setup_lint = function()
+M.setup_lint = function()
   local status, lint = pcall(require, "lint")
   if not status then
     return
@@ -38,7 +38,7 @@ H.setup_lint = function()
   vim.list_extend(lint.linters.commitlint.args, { "--config", ".config/commitlint.yml" })
 end
 
-H.setup_lsp = function()
+M.setup_lsp = function()
   if vim.fn.has("nvim-0.11") == 0 then
     return
   end
@@ -61,7 +61,7 @@ H.setup_lsp = function()
   })
 end
 
-H.setup_plugins = function()
+M.setup_plugins = function()
   if vim.fn.has("nvim-0.12") == 0 then
     return
   end
@@ -70,7 +70,7 @@ H.setup_plugins = function()
   require("ansible").setup()
 end
 
-H.setup_treesitter = function()
+M.setup_treesitter = function()
   local status, treesitter = pcall(require, "nvim-treesitter")
   if not status then
     return
@@ -118,9 +118,9 @@ H.setup_treesitter = function()
     end,
 
     desc = "Start tree-sitter",
-    group = H.augroup,
+    group = M.augroup,
     pattern = filetypes,
   })
 end
 
-H.setup()
+M.setup()
