@@ -13,10 +13,8 @@ M.setup = function()
 end
 
 M.setup_conform = function()
-  local status, conform = pcall(require, "conform")
-  if not status then
-    return
-  end
+  vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
+  local conform = require("conform")
 
   conform.formatters_by_ft = conform.formatters_by_ft or {}
   conform.formatters_by_ft["markdown"] = { "rumdl" }
@@ -26,10 +24,8 @@ M.setup_conform = function()
 end
 
 M.setup_lint = function()
-  local status, lint = pcall(require, "lint")
-  if not status then
-    return
-  end
+  vim.pack.add({ "https://codeberg.org/mfussenegger/nvim-lint" })
+  local lint = require("lint")
 
   lint.linters_by_ft = lint.linters_by_ft or {}
   lint.linters_by_ft.gitcommit = { "commitlint" }
@@ -41,9 +37,7 @@ M.setup_lint = function()
 end
 
 M.setup_lsp = function()
-  if vim.fn.has("nvim-0.11") == 0 then
-    return
-  end
+  vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 
   vim.lsp.config('ruff', {
     init_options = {
@@ -64,19 +58,13 @@ M.setup_lsp = function()
 end
 
 M.setup_plugins = function()
-  if vim.fn.has("nvim-0.12") == 0 then
-    return
-  end
-
   vim.pack.add({ "https://github.com/pearofducks/ansible-vim" })
   require("ansible").setup()
 end
 
 M.setup_treesitter = function()
-  local status, treesitter = pcall(require, "nvim-treesitter")
-  if not status then
-    return
-  end
+  vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
+  local treesitter = require("nvim-treesitter")
 
   local languages = {
     "comment",
