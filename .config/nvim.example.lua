@@ -66,9 +66,8 @@ H.setup_plugins = function()
     return
   end
 
-  vim.pack.add({
-    "https://github.com/mfussenegger/nvim-ansible",
-  })
+  vim.pack.add({ "https://github.com/pearofducks/ansible-vim" })
+  require("ansible").setup()
 end
 
 H.setup_treesitter = function()
