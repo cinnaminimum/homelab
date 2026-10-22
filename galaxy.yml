@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/galaxy.json
-# This collection is initialized by https://github.com/ansible/ansible-creator 26.6.1
-
-# See https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
+#
+# https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
 
 namespace: "cinnaminimum"
 name: "homelab"
@@ -20,14 +19,12 @@ tags:
   - homelab
   - podman
   - quadlet
-# TO-DO: maintain this list to reflect the collection's dependencies
 dependencies:
-  "ansible.utils": "*" # note: "*" selects the latest version available
+  "ansible.utils": "*"
   "containers.podman": "*"
 
 repository: https://codeberg.org/cinnaminimum/homelab
 documentation: https://cinnaminimum.codeberg.page/homelab
-# homepage: http://example.com
 issues: https://codeberg.org/cinnaminimum/homelab/issues
 
 manifest:
