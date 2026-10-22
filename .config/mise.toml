@@ -136,7 +136,7 @@ alias = ["format:ruff"]
 
 [tasks."ruff:format:check"]
 description = "Check python file formatting with ruff"
-run = "mise run ruff -- format --check"
+run = "mise run ruff:format -- --check"
 alias = ["format:check:ruff"]
 
 [tasks."ruff:lint"]
