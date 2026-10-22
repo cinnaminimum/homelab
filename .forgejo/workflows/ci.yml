@@ -81,7 +81,7 @@ jobs:
           mv ".tmp-ansible-collection-checkout" "${{ steps.collection-metadata.outputs.checkout-path }}"
 
       - name: Set up mise
-        uses: https://github.com/jdx/mise-action@v4
+        uses: https://github.com/jdx/mise-action@fc42bcc7ddbf51124c30f95a877a0c5168a3bfde # v5
         with:
           github_token: ${{ secrets.HOMELAB_GITHUB_TOKEN }}
           working_directory: ${{ steps.collection-metadata.outputs.checkout-path }}
