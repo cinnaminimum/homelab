@@ -12,3 +12,6 @@
 
 # 2026-10-22 | style: Sort keys in galaxy.yml
 43d6119a6a60b884d66786ea512f04aa648bdc33
+
+# 2026-10-22 | style: Fix ruff isort lints
+a5b6640323ffa323f8fc89ab3a4a1f873392fe5a
