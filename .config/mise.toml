@@ -129,6 +129,11 @@ run = "uv run scripts/tasks/release.py"
 description = "Run ruff with project settings"
 run = "ruff --config .config/ruff.toml"
 
+[tasks."ruff:format"]
+description = "Format python files with ruff"
+run = "mise run ruff -- format"
+alias = ["format:ruff"]
+
 [tasks."ruff:format:check"]
 description = "Check python file formatting with ruff"
 run = "mise run ruff -- format --check"
