@@ -14,3 +14,18 @@ releases:
         name: systemd
         namespace: null
     release_date: '2026-08-09'
+  0.1.0:
+    changes:
+      bugfixes:
+      - build - include `files/*` role subdir files in build.
+      major_changes:
+      - traefik - add traefik role.
+    fragments:
+    - 1786314500_readme-docsite.yml
+    - 1786657922_galaxy-manifest.yml
+    - 1786658187_galaxy-manifest.yml
+    - 1786706478_podman-flush.yml
+    - 1786830006_traefik.yml
+    - 1786886670_podman-readme.yml
+    - 1792669162_no-meta-role.yml
+    release_date: '2026-10-22'

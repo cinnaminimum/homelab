@@ -5,7 +5,7 @@
 
 namespace: "cinnaminimum"
 name: "homelab"
-version: 0.0.0
+version: 0.1.0
 readme: README.md
 authors:
   - Gerald Ya Ya

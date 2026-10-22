@@ -4,6 +4,19 @@ Cinnaminimum Homelab Collection Release Notes
 
 .. contents:: Topics
 
+v0.1.0
+======
+
+Major Changes
+-------------
+
+- traefik - add traefik role.
+
+Bugfixes
+--------
+
+- build - include `files/*` role subdir files in build.
+
 v0.0.0
 ======
 
