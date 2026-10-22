@@ -9,3 +9,6 @@
 
 # 2026-10-03 | style: Format python files with ruff
 02570b5cdb404dc4233dcf007b6fdccf53c75d03
+
+# 2026-10-22 | style: Sort keys in galaxy.yml
+43d6119a6a60b884d66786ea512f04aa648bdc33
