@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/galaxy.json
 ---
 # This collection is initialized by https://github.com/ansible/ansible-creator 26.6.1
 
