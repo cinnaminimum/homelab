@@ -3,7 +3,7 @@
 - name: Include meta role
 
   ansible.builtin.include_role:
-    name: cinnaminimum.homelab.meta
+    name: cinnaminimum.homelab.misc
 
 - name: Stat /etc/homelab/ directory
   register: meta_role_stat
