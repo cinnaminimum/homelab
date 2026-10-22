@@ -2,32 +2,34 @@
 #
 # https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
 
-namespace: "cinnaminimum"
-name: "homelab"
-version: 0.1.0
-readme: README.md
 authors:
   - Gerald Ya Ya
 
-description: Install and configure homelab apps as quadlets with ansible
-license_file: LICENSE.md
-
-tags:
-  - application
-  - linux
-  - debian
-  - homelab
-  - podman
-  - quadlet
 dependencies:
   "ansible.utils": "*"
   "containers.podman": "*"
 
-repository: https://codeberg.org/cinnaminimum/homelab
+description: Install and configure homelab apps as quadlets with ansible
 documentation: https://cinnaminimum.codeberg.page/homelab
 issues: https://codeberg.org/cinnaminimum/homelab/issues
+license_file: LICENSE.md
 
 manifest:
   directives:
     - include roles/*/README.md
     - include roles/*/files/*
+
+name: "homelab"
+namespace: "cinnaminimum"
+readme: README.md
+repository: https://codeberg.org/cinnaminimum/homelab
+
+tags:
+  - application
+  - debian
+  - homelab
+  - linux
+  - podman
+  - quadlet
+
+version: 0.1.0
