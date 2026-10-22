@@ -2,6 +2,7 @@ from pathlib import Path
 from subprocess import run
 from sys import stderr, stdin, stdout
 
+
 BUILD_DIR = "build/docs"
 COLLECTION = "cinnaminimum.homelab"
 COPYRIGHT = "Gerald Ya Ya"

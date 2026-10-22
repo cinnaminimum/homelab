@@ -2,6 +2,7 @@ from os import environ
 from subprocess import run
 from sys import argv, exit, stderr, stdin, stdout
 
+
 FIRST_COMMIT = "99d2ec2a9bcd0545650105b36ac414d59bb6b003"
 
 
@@ -33,9 +34,7 @@ def main(args_in: list[str]) -> None:
         "GIT_CONFIG_VALUE_0": "false",
     }
 
-    process = run(
-        args_out, env=env, stdin=stdin, stdout=stdout, stderr=stderr, check=False
-    )
+    process = run(args_out, env=env, stdin=stdin, stdout=stdout, stderr=stderr, check=False)
     exit(process.returncode)
 
 

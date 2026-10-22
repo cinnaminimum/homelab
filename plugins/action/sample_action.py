@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 
 from ansible.plugins.action import ActionBase
 
+
 try:
     from ansible_collections.ansible.utils.plugins.module_utils.common.argspec_validate import (  # type: ignore
         AnsibleArgSpecValidator,
