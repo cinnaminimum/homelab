@@ -126,7 +126,7 @@ jobs:
         working-directory: ${{ steps.collection-metadata.outputs.checkout-path }}
 
       - name: Upload build artifact
-        uses: https://data.forgejo.org/forgejo/upload-artifact@v4
+        uses: https://data.forgejo.org/forgejo/upload-artifact@cb8afe72b42edc798abfb8fcb556cf660d894245 # v5
         with:
           name: ${{ forgejo.event.repository.name }}-${{ env.FORGEJO_SHA }}
           path: ${{ steps.collection-metadata.outputs.checkout-path }}/build/*
