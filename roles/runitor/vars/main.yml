@@ -1,0 +1,6 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json
+
+runitor_bin_path: /usr/local/bin/runitor
+runitor_latest_release_url: https://api.github.com/repos/bdd/runitor/releases/latest
+runitor_release_pattern: -linux-amd64$

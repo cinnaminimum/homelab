@@ -1,0 +1,13 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include tasks
+  loop:
+    - install
+    - healthchecks_domain
+    - ping_key
+    - no_conf
+    - uninstall
+
+  ansible.builtin.include_tasks:
+    file: "{{ item }}.yml"

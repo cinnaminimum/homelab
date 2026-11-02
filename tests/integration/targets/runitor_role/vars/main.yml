@@ -1,0 +1,7 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json
+
+runitor_role_env_path: "{{ [etc_homelab_dir, 'runitor_role.env'] | ansible.builtin.path_join }}"
+runitor_role_key_path: "{{ [etc_homelab_dir, 'runitor_role.key'] | ansible.builtin.path_join }}"
+runitor_role_healthchecks_domain: healthchecks.example.com
+runitor_role_ping_key: TESTKEY

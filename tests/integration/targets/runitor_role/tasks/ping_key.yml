@@ -1,0 +1,76 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include runitor role with ping key specified
+  vars:
+    runitor_env_path: "{{ runitor_role_env_path }}"
+    runitor_key_path: "{{ runitor_role_key_path }}"
+    runitor_ping_key: "{{ runitor_role_ping_key }}"
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.runitor
+
+- name: Check for PING_KEY in runitor_role_env_path
+  register: runitor_role_lineinfile
+  check_mode: true
+
+  ansible.builtin.lineinfile:
+    path: "{{ runitor_role_env_path }}"
+    line: PING_KEY="file:{{ runitor_role_key_path }}"
+
+- name: Assert PING_KEY was present in runitor_role_env_path
+
+  ansible.builtin.assert:
+    that: runitor_role_lineinfile.changed is false
+
+- name: Stat runitor_role_key_path
+  register: runitor_role_stat
+
+  ansible.builtin.stat:
+    path: "{{ runitor_role_key_path }}"
+
+- name: Assert runitor_role_key_path exists
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.exists
+
+- name: Assert runitor_role_key_path is owned by root user
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.pw_name == "root"
+
+- name: Assert runitor_role_key_path is owned by runitor group
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.gr_name == "runitor"
+
+- name: Assert runitor_role_key_path has user read/write permissions
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.rusr and runitor_role_stat.stat.wusr and not
+      runitor_role_stat.stat.xusr
+
+- name: Assert runitor_role_key_path has group read permissions
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.rgrp and not runitor_role_stat.stat.wgrp and not
+      runitor_role_stat.stat.xgrp
+
+- name: Assert runitor_role_key_path has no other permissions
+
+  ansible.builtin.assert:
+    that: not runitor_role_stat.stat.roth and not runitor_role_stat.stat.woth and not
+      runitor_role_stat.stat.xoth
+
+- name: Slurp runitor_role_key_path
+  register: runitor_role_slurp
+  become: true
+
+  ansible.builtin.slurp:
+    src: "{{ runitor_role_key_path }}"
+    armor: false
+
+- name: Assert ping key was copied correctly
+
+  ansible.builtin.assert:
+    that: runitor_role_slurp.content == runitor_role_ping_key

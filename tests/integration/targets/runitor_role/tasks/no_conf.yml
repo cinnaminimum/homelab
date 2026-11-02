@@ -1,0 +1,33 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include runitor role with healthchecks domain and ping key unspecified
+  vars:
+    runitor_env_path: "{{ runitor_role_env_path }}"
+    runitor_key_path: "{{ runitor_role_key_path }}"
+    runitor_healthchecks_domain:
+    runitor_ping_key:
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.runitor
+
+- name: Stat env file
+  register: runitor_role_stat
+
+  ansible.builtin.stat:
+    path: "{{ runitor_role_env_path }}"
+
+- name: Assert env file does not exist
+
+  ansible.builtin.assert:
+    that: not runitor_role_stat.stat.exists
+
+- name: Stat key file
+  register: runitor_role_stat
+
+  ansible.builtin.stat:
+    path: "{{ runitor_role_key_path }}"
+
+- name: Assert key file does not exist
+
+  ansible.builtin.assert:
+    that: not runitor_role_stat.stat.exists

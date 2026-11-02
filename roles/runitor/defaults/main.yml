@@ -1,0 +1,8 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json
+
+runitor_bin_path: /usr/local/bin/runitor
+runitor_env_path: "{{ [etc_homelab_dir, 'runitor.env'] | ansible.builtin.path_join }}"
+runitor_healthchecks_domain:
+runitor_key_path: "{{ [etc_homelab_dir, 'runitor.key'] | ansible.builtin.path_join }}"
+runitor_ping_key:

@@ -1,0 +1,23 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include runitor role with all defaults
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.runitor
+
+- name: Stat runitor binary
+  register: runitor_role_stat
+
+  ansible.builtin.stat:
+    path: /usr/local/bin/runitor
+
+- name: Assert runitor binary exists
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.exists
+
+- name: Assert runitor binary is executable
+
+  ansible.builtin.assert:
+    that: runitor_role_stat.stat.executable

@@ -1,0 +1,45 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include runitor role with most defaults
+  vars:
+    runitor_env_path: "{{ runitor_role_env_path }}"
+    runitor_key_path: "{{ runitor_role_key_path }}"
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.runitor
+    tasks_from: uninstall
+
+- name: Get runitor user info
+
+  ansible.builtin.getent:
+    database: passwd
+    key: runitor
+    fail_key: false
+
+- name: Assert runitor user is removed
+
+  ansible.builtin.assert:
+    that: ansible_facts.getent_passwd["runitor"] is none
+
+- name: Stat env file
+  register: runitor_env_stat
+
+  ansible.builtin.stat:
+    path: "{{ runitor_role_env_path }}"
+
+- name: Assert env file is removed
+
+  ansible.builtin.assert:
+    that: runitor_env_stat.stat.exists is false
+
+- name: Stat key file
+  register: runitor_key_stat
+
+  ansible.builtin.stat:
+    path: "{{ runitor_role_key_path }}"
+
+- name: Assert key file is removed
+
+  ansible.builtin.assert:
+    that: runitor_key_stat.stat.exists is false

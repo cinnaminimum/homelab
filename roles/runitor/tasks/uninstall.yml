@@ -1,0 +1,29 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Remove runitor user
+  become: true
+
+  ansible.builtin.user:
+    name: runitor
+    state: absent
+
+- name: Remove runitor binary
+  become: true
+
+  ansible.builtin.file:
+    path: /usr/local/bin/runitor
+
+- name: Remove env file
+  become: true
+
+  ansible.builtin.file:
+    path: "{{ runitor_env_path }}"
+    state: absent
+
+- name: Remove key file
+  become: true
+
+  ansible.builtin.file:
+    path: "{{ runitor_key_path }}"
+    state: absent

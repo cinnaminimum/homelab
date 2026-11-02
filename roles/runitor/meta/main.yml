@@ -1,0 +1,162 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta.json
+
+argument_specs:
+  main:
+    short_description: Install and configure runitor
+    description:
+      - Install and configure runitor, a command runner with healthchecks.io integration.
+      - The newest version is always installed.  If an old version is installed and a new version is
+        available, the old version will be replaced by the new version.
+      - A C(runitor) system user (and group) is created for potential automation and owning the ping
+        key (if provided).
+      - A ping key can be provided as O(runitor_ping_key) and will be stored at O(runitor_key_path).
+        The O(runitor_key_path) value is reflected by the C(PING_KEY) value in O(runitor_env_path).
+      - A O(runitor_healthchecks_domain) option can be provided to fill in a C(HC_API_URL) key in
+        O(runitor_env_path).
+
+    options:
+      runitor_bin_path:
+        type: path
+        default: /usr/local/bin/runitor
+        description:
+          - Path at which the runitor binary should be stored
+
+      runitor_env_path:
+        type: path
+        default: /etc/homelab/runitor.env
+        description:
+          - Path at which the runitor env file should be stored
+
+      runitor_healthchecks_domain:
+        type: str
+        description:
+          - The domain at which the healthchecks service is hosted
+          - If provided, a C(HC_API_URL) variable will be set in C(/etc/homelab/runitor.env) for
+            scripting purposes.
+
+      runitor_key_path:
+        type: path
+        default: /etc/homelab/runitor.key
+        description:
+          - Path at which the runitor key file should be stored
+
+      runitor_ping_key:
+        type: str
+        description:
+          - The key runitor should use when pinging the healthchecks service
+          - If provided, a C(PING_KEY) variable will be set in C(/etc/homelab/runitor.env) for
+            scripting purposes.
+
+    examples: |
+      # Default options will skip writing key and env files
+      - name: Install runitor with default options
+
+        ansible.builtin.include_role:
+          name: cinnaminimum.homelab.runitor
+
+      ---
+
+      # The ping key will be written to /etc/homelab/runitor.key by default and the healthchecks
+      # domain will be filled in to HC_API_URL at /etc/homelab/runitor.env by default (which will
+      # also reference the key file location as PING_KEY)
+      - name: Install runitor with application settings
+        vars:
+          runitor_healthchecks_domain: healthchecks.example.com
+          runitor_ping_key: pingkey
+
+        ansible.builtin.include_role:
+          name: cinnaminimum.homelab.runitor
+
+      ---
+
+      # Set custom filesystem locations.  Note that key and env files won't be written if data for
+      # them isn't provided.
+      - name: Install runitor with filesystem settings
+        vars:
+          runitor_bin_path: /path/to/runitor
+          runitor_env_path: /path/to/runitor.env
+          runitor_key_path: /path/to/runitor.env
+          runitor_healthchecks_domain: healthchecks.example.com
+          runitor_ping_key: pingkey
+
+        ansible.builtin.inclue_role:
+          cinnaminimum.homelab.runitor
+
+    seealso:
+      - name: Runitor GitHub repository
+        description: A command runner with healthchecks.io integration
+        link: https://github.com/bdd/runitor
+
+      - name: Healthchecks.io documentation
+        description: A service for monitoring cron jobs
+        link: https://healthchecks.io/docs/
+
+    author: Gerald Ya Ya
+    version_added: 0.2.0
+
+  uninstall:
+    short_description: Uninstall runitor
+    description:
+      - Uninstall runitor, a command runner with healthchecks.io integration.
+      - The C(runitor) system user (and group) are removed.
+      - The O(runitor_bin_path) is removed.
+      - The O(runitor_env_path) and O(runitor_key_path) are removed.
+
+    options:
+      runitor_bin_path:
+        type: path
+        default: /usr/local/bin/runitor
+        description:
+          - Path at which the runitor binary was installed
+
+      runitor_env_path:
+        type: path
+        default: /etc/homelab/runitor.env
+        description:
+          - Path at which the runitor env file was installed
+
+      runitor_key_path:
+        type: path
+        default: /etc/homelab/runitor.key
+        description:
+          - Path at which the runitor key file was installed
+
+    examples: |
+      # Removes /usr/local/bin/runitor, /etc/homelab/runitor.env and /etc/homelab/runitor.key
+      - name: Uninstall runitor with default settings
+
+        ansible.builtin.include_role:
+          name: cinnaminimum.homelab.runitor
+          tasks_from: uninstall
+
+      ---
+
+      - name: Uninstall runitor from custom locations
+        vars:
+          runitor_bin_path: /path/to/runitor
+          runitor_env_path: /path/to/runitor.env
+          runitor_key_path: /path/to/runitor.key
+
+        ansible.builtin.include_role:
+          name: cinnaminimum.homelab.runitor
+          tasks_from: uninstall
+
+    author: Gerald Ya Ya
+    version_added: 0.2.0
+
+dependencies:
+  - cinnaminimum.homelab.etc
+
+galaxy_info:
+  description: cinnaminimum.homelab runitor Role
+
+  galaxy_tags:
+    - linux
+    - application
+    - debian
+    - runitor
+    - podman
+    - quadlet
+
+  standalone: false

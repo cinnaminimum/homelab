@@ -1,0 +1,70 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Create user
+  become: true
+
+  ansible.builtin.user:
+    name: runitor
+    system: true
+
+- name: Get user info
+
+  ansible.builtin.getent:
+    database: passwd
+    key: runitor
+
+- name: Download and install
+  become: true
+  vars:
+    runitor_releases: >-
+      {{ lookup("ansible.builtin.url", runitor_latest_release_url,
+        split_lines=false) | ansible.builtin.from_json }}
+    runitor_release: >-
+      {{ runitor_releases.assets |
+        ansible.builtin.selectattr("name", "search", runitor_release_pattern) | first }}
+
+  ansible.builtin.get_url:
+    url: "{{ runitor_release.browser_download_url }}"
+    checksum: "{{ runitor_release.digest }}"
+    dest: "{{ runitor_bin_path }}"
+    mode: "755"
+
+- name: Process env template
+  become: true
+  register: runitor_env
+  when: runitor_healthchecks_domain is not none or runitor_ping_key is not none
+
+  ansible.builtin.template:
+    src: runitor.env.j2
+    dest: "{{ runitor_env_path }}"
+    mode: "644"
+
+- name: Remove env file
+  become: true
+  when: runitor_env is ansible.builtin.skipped
+
+  ansible.builtin.file:
+    path: "{{ runitor_env_path }}"
+    state: absent
+
+- name: Copy key file
+  no_log: true
+  become: true
+  register: runitor_key
+  when: runitor_ping_key is not none
+
+  ansible.builtin.copy:
+    content: "{{ runitor_ping_key }}"
+    dest: "{{ runitor_key_path }}"
+    mode: "640"
+    owner: root
+    group: runitor
+
+- name: Remove key file
+  become: true
+  when: runitor_key is ansible.builtin.skipped
+
+  ansible.builtin.file:
+    path: "{{ runitor_key_path }}"
+    state: absent

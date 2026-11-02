@@ -1,0 +1,23 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include runitor role with healthchecks domain specified
+  vars:
+    runitor_env_path: "{{ runitor_role_env_path }}"
+    runitor_healthchecks_domain: "{{ runitor_role_healthchecks_domain }}"
+
+  ansible.builtin.include_role:
+    name: cinnaminimum.homelab.runitor
+
+- name: Check for HC_API_URL in runitor_role_env_path
+  register: runitor_role_lineinfile
+  check_mode: true
+
+  ansible.builtin.lineinfile:
+    path: "{{ runitor_role_env_path }}"
+    line: HC_API_URL="https://{{ runitor_role_healthchecks_domain }}/ping"
+
+- name: Assert HC_API_URL was present in runitor_role_env_path
+
+  ansible.builtin.assert:
+    that: runitor_role_lineinfile.changed is false
