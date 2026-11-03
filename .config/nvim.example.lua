@@ -9,6 +9,18 @@ local M = {}
 ---@type integer
 M.augroup = nil
 
+---Filetypes to register with neovim
+---@private
+---@type vim.filetype.add.filetypes
+M.filetypes = {
+  extension = {
+    ["build"] = "ini",
+    ["j2"] = "jinja",
+    ["network"] = "ini",
+    ["volume"] = "ini",
+  }
+}
+
 ---Run the configuration setup
 ---@public
 M.setup = function()
@@ -16,6 +28,7 @@ M.setup = function()
 
   M.setup_ansible()
   M.setup_conform()
+  M.setup_filetypes()
   M.setup_lint()
   M.setup_lsp()
   M.setup_treesitter()
@@ -39,6 +52,12 @@ M.setup_conform = function()
   conform.formatters_by_ft["python"] = { "ruff_fix", "ruff_organize_imports", "ruff_format" }
   conform.formatters_by_ft["toml"] = { "tombi" }
   conform.formatters_by_ft["yaml.ansible"] = { "ansible-lint" }
+end
+
+---Register filetypes with neovim
+---@private
+M.setup_filetypes = function()
+  vim.filetype.add(M.filetypes)
 end
 
 ---Set up nvim-lint
@@ -101,15 +120,12 @@ M.setup_treesitter = function()
   }
   treesitter.install(languages)
 
-  local extensions = {
-    ["build"] = "ini",
-    ["j2"] = "jinja",
-    ["network"] = "ini",
-    ["volume"] = "ini",
-  }
-  vim.filetype.add({ extension = extensions })
+  for extension, filetype in pairs(M.filetypes.extension) do
+    -- Make type checker happy
+    if type(filetype) ~= "string" then
+      error()
+    end
 
-  for extension, filetype in pairs(extensions) do
     vim.treesitter.language.register(filetype, extension)
   end
   vim.treesitter.language.register("jinja", "dockerfile.jinja")
