@@ -1,7 +1,16 @@
+---Configuration for cinnaminimum.homelab
+---@see docs https://cinnaminimum.codeberg.page/homelab/
+---@see repo https://codeberg.org/cinnaminimum/homelab
+---@class ProjectConfig
 local M = {}
 
+---Autocmd group for the configuration
+---@private
+---@type integer
 M.augroup = nil
 
+---Run the configuration setup
+---@public
 M.setup = function()
   M.augroup = vim.api.nvim_create_augroup("ProjectConfig", {})
 
@@ -12,11 +21,15 @@ M.setup = function()
   M.setup_treesitter()
 end
 
+---Set up ansible-vim
+---@private
 M.setup_ansible = function()
   vim.pack.add({ "https://github.com/pearofducks/ansible-vim" })
   require("ansible").setup()
 end
 
+---Set up conform.nvim
+---@private
 M.setup_conform = function()
   vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
   local conform = require("conform")
@@ -28,6 +41,8 @@ M.setup_conform = function()
   conform.formatters_by_ft["yaml.ansible"] = { "ansible-lint" }
 end
 
+---Set up nvim-lint
+---@private
 M.setup_lint = function()
   vim.pack.add({ "https://codeberg.org/mfussenegger/nvim-lint" })
   local lint = require("lint")
@@ -41,6 +56,8 @@ M.setup_lint = function()
   vim.list_extend(lint.linters.commitlint.args, { "--config", ".config/commitlint.yml" })
 end
 
+---Set up lsp
+---@private
 M.setup_lsp = function()
   vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 
@@ -63,6 +80,8 @@ M.setup_lsp = function()
   })
 end
 
+---Set up tree-sitter
+---@private
 M.setup_treesitter = function()
   vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
   local treesitter = require("nvim-treesitter")
