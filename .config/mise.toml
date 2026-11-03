@@ -185,6 +185,7 @@ alias = ["lint:ty"]
 node = "latest"
 "npm:@ansible/ansible-language-server" = "latest"
 "npm:@commitlint/cli" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
 "pipx:ansible-creator" = "latest"
 "pipx:ansible-lint" = { version = "latest", uvx_args = "--with distlib" }
 "pipx:antsibull-changelog" = "latest"

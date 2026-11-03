@@ -40,6 +40,10 @@ backend = "npm:@ansible/ansible-language-server"
 version = "20.1.0"
 backend = "npm:@commitlint/cli"
 
+[[tools."npm:vscode-langservers-extracted"]]
+version = "4.10.0"
+backend = "npm:vscode-langservers-extracted"
+
 [[tools."pipx:ansible-creator"]]
 version = "26.6.1"
 backend = "pipx:ansible-creator"

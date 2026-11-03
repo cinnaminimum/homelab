@@ -54,6 +54,7 @@ M.setup_lsp = function()
 
   vim.lsp.enable({
     "ansiblels",
+    "jsonls",
     "ruff",
     "rumdl",
     "tombi",
