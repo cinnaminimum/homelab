@@ -71,6 +71,13 @@ M.setup_conform = function()
   vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
   local conform = require("conform")
 
+  conform.formatters = conform.formatters or {}
+  conform.formatters["ruff_fix"] = {
+    prepend_args = { "--config", ".config/ruff.toml" },
+  }
+  conform.formatters["ruff_organize_imports"] = conform.formatters["ruff_fix"]
+  conform.formatters["ruff_format"] = conform.formatters["ruff_fix"]
+
   conform.formatters_by_ft = conform.formatters_by_ft or {}
   conform.formatters_by_ft["markdown"] = { "rumdl" }
   conform.formatters_by_ft["python"] = { "ruff_fix", "ruff_organize_imports", "ruff_format" }
