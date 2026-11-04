@@ -1,4 +1,3 @@
----
 - name: Test the Hello World filter plugin
   ansible.builtin.set_fact:
     msg: "{{ 'ansible-creator' | cinnaminimum.homelab.sample_filter }}"

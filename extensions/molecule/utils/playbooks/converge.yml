@@ -1,4 +1,3 @@
----
 - name: Shared integration test runner
   hosts: localhost
   gather_facts: false

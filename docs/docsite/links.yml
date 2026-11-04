@@ -1,4 +1,3 @@
----
 # This will make sure that plugin and module documentation gets Edit on GitHub links
 # that allow users to directly create a PR for this plugin or module in GitHub's UI.
 # Remove this section if the collection repository is not on GitHub, or if you do not

@@ -1,4 +1,3 @@
----
 name: Release cinnaminimum.homelab
 
 on: # yamllint disable-line rule:truthy
