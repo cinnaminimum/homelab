@@ -1,0 +1,5 @@
+plugins/filter/sample_filter.py yaml[document-start] skip
+plugins/lookup/sample_lookup.py yaml[document-start] skip
+plugins/modules/sample_action.py yaml[document-start] skip
+plugins/modules/sample_module.py yaml[document-start] skip
+plugins/test/sample_test.py yaml[document-start] skip

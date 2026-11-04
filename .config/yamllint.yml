@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://www.schemastore.org/yamllint.json
+#
+# https://yamllint.readthedocs.io/en/stable/configuration.html
+
+rules:
+  document-start:
+    ignore: ["*.py"]
+    present: false
+
+  line-length:
+    max: 100
+
+  quoted-strings:
+    allow-quoted-quotes: true
+    required: only-when-needed
+    quote-type: double
