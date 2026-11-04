@@ -39,6 +39,30 @@ end
 M.setup_ansible = function()
   vim.pack.add({ "https://github.com/pearofducks/ansible-vim" })
   require("ansible").setup()
+
+  -- Kill the autocmd groups that set filetypes
+  vim.api.nvim_create_augroup("ansible_vim_ftyaml_ansible", {})
+  vim.api.nvim_create_augroup("ansible_vim_ftjinja2", {})
+  vim.api.nvim_create_augroup("ansible_vim_fthosts", {})
+
+  vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+    callback = function(args)
+      local name = vim.api.nvim_buf_get_name(args.buf)
+      if name:match(".*/files/.*%.yml") or
+          name:match(".*/meta/.*%.yml") or
+          name:match(".*/templates/.*%.yml") then
+        return
+      end
+      vim.bo.filetype = "ansible"
+    end,
+
+    desc = "Set ansible filetype",
+    group = M.augroup,
+    pattern = {
+      "*/roles/*/*.yml",
+      "*/tests/integration/targets/*/*/*.yml",
+    },
+  })
 end
 
 ---Set up conform.nvim
