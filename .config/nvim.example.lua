@@ -99,6 +99,7 @@ M.setup_lint = function()
 
   lint.linters_by_ft = lint.linters_by_ft or {}
   lint.linters_by_ft.gitcommit = { "commitlint" }
+  lint.linters_by_ft.yaml = { "yamllint" }
 
   lint.linters = lint.linters or {}
   lint.linters.commitlint = lint.linters.commitlint or {}
