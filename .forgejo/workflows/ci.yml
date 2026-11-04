@@ -9,6 +9,7 @@ on: # yamllint disable-line rule:truthy
 jobs:
   ci:
     runs-on: codeberg-small-lazy
+    # yamllint disable-line rule:line-length
     container: catthehacker/ubuntu:act-latest@sha256:c58e2b364da03b0c804c7d660f2ecbedf2f221a382b9baa0b344b0144780ff43
     env:
       MISE_ENV: ci
@@ -76,9 +77,11 @@ jobs:
 
       - name: Move the collection to the proper path
         if: ${{ fromJSON(steps.collection-metadata.outputs.copy-to-checkout-path) }}
+        # yamllint disable rule:line-length
         run: |
           mkdir -p "${{ steps.collection-metadata.outputs.collection-namespace-path }}"
           mv ".tmp-ansible-collection-checkout" "${{ steps.collection-metadata.outputs.checkout-path }}"
+        # yamllint enable rule:line-length
 
       - name: Set up mise
         uses: https://github.com/jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
@@ -126,15 +129,18 @@ jobs:
         working-directory: ${{ steps.collection-metadata.outputs.checkout-path }}
 
       - name: Upload build artifact
+        # yamllint disable-line rule:line-length
         uses: https://data.forgejo.org/forgejo/upload-artifact@cb8afe72b42edc798abfb8fcb556cf660d894245 # v5
         with:
           name: ${{ forgejo.event.repository.name }}-${{ env.FORGEJO_SHA }}
           path: ${{ steps.collection-metadata.outputs.checkout-path }}/build/*
 
       - name: Deploy docs
+        # yamllint disable-line rule:line-length
         uses: https://codeberg.org/git-pages/action@2b24bbb7ff943d3c8fe1df91326adec66daea6dd # v2.2.0
         if: ${{ forge.ref_type == 'tag' && forge.server_url == 'https://codeberg.org' }}
         with:
+          # yamllint disable-line rule:line-length
           site: https://${{ forge.repository_owner }}.codeberg.page/${{ forgejo.event.repository.name }}/
           token: ${{ forge.token }}
           source: ${{ steps.collection-metadata.outputs.checkout-path }}/build/docs/build/html/
