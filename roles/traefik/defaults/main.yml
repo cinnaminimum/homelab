@@ -12,13 +12,8 @@ traefik_config_file: |
       filename: /etc/traefik/provider.yml
 
 traefik_env: {}
-
 traefik_file_provider: "{}"
-
 traefik_ip_address: 0.0.0.0
-
 traefik_podman_quadlet_container_extra: []
-
 traefik_podman_quadlet_pod_extra: []
-
 traefik_state: present
