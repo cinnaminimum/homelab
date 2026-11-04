@@ -25,13 +25,13 @@
 - name: Remove /etc/containers/systemd/homelab-traefik* files
   notify: Reload systemd
   become: true
-  loop: '{{ traefik_find.files }}'
+  loop: "{{ traefik_find.files }}"
   loop_control:
-    label: '{{ traefik_item.path }}'
+    label: "{{ traefik_item.path }}"
     loop_var: traefik_item
 
   ansible.builtin.file:
-    path: '{{ traefik_item.path }}'
+    path: "{{ traefik_item.path }}"
     state: absent
 
 - name: Remove /etc/homelab/traefik.env file

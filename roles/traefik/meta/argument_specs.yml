@@ -48,7 +48,7 @@ argument_specs:
 
       traefik_file_provider:
         type: str
-        default: '{}'
+        default: "{}"
         description:
           - The file provider lets you define routing configuration.
           - String content of C(/etc/traefik/provider.yml).

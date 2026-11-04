@@ -26,24 +26,24 @@
   ansible.builtin.file:
     path: /etc/containers/systemd/homelab-traefik
     state: directory
-    mode: '750'
+    mode: "750"
 
 - name: Copy non-sensitive content
   notify: Restart homelab-traefik
   become: true
   loop:
-    - content: '{{ traefik_config_file }}'
+    - content: "{{ traefik_config_file }}"
       dest: /etc/containers/systemd/homelab-traefik/traefik.yml
-    - content: '{{ traefik_file_provider }}'
+    - content: "{{ traefik_file_provider }}"
       dest: /etc/containers/systemd/homelab-traefik/provider.yml
   loop_control:
-    label: '{{ traefik_item.dest }}'
+    label: "{{ traefik_item.dest }}"
     loop_var: traefik_item
 
   ansible.builtin.copy:
-    content: '{{ traefik_item.content }}'
-    dest: '{{ traefik_item.dest }}'
-    mode: '644'
+    content: "{{ traefik_item.content }}"
+    dest: "{{ traefik_item.dest }}"
+    mode: "644"
 
 - name: Copy non-sensitive files
   notify: Restart homelab-traefik
@@ -54,13 +54,13 @@
     - src: homelab-traefik-acme.volume
       dest: /etc/containers/systemd/homelab-traefik-acme.volume
   loop_control:
-    label: '{{ traefik_item.src }}'
+    label: "{{ traefik_item.src }}"
     loop_var: traefik_item
 
   ansible.builtin.copy:
-    src: '{{ traefik_item.src }}'
-    dest: '{{ traefik_item.dest }}'
-    mode: '644'
+    src: "{{ traefik_item.src }}"
+    dest: "{{ traefik_item.dest }}"
+    mode: "644"
 
 - name: Process non-sensitive templates
   notify: Restart homelab-traefik
@@ -73,13 +73,13 @@
     - src: homelab-traefik.pod.j2
       dest: /etc/containers/systemd/homelab-traefik.pod
   loop_control:
-    label: '{{ traefik_item.src }}'
+    label: "{{ traefik_item.src }}"
     loop_var: traefik_item
 
   ansible.builtin.template:
-    src: '{{ traefik_item.src }}'
-    dest: '{{ traefik_item.dest }}'
-    mode: '644'
+    src: "{{ traefik_item.src }}"
+    dest: "{{ traefik_item.dest }}"
+    mode: "644"
 
 - name: Process sensitive templates
   notify: Restart homelab-traefik
@@ -88,12 +88,12 @@
     - src: traefik.env.j2
       dest: /etc/homelab/traefik.env
   loop_control:
-    label: '{{ traefik_item.src }}'
+    label: "{{ traefik_item.src }}"
     loop_var: traefik_item
 
   ansible.builtin.template:
-    src: '{{ traefik_item.src }}'
-    dest: '{{ traefik_item.dest }}'
-    mode: '640'
+    src: "{{ traefik_item.src }}"
+    dest: "{{ traefik_item.dest }}"
+    mode: "640"
     owner: root
     group: traefik

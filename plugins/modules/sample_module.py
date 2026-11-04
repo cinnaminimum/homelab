@@ -23,7 +23,7 @@ EXAMPLES = """
 - name: Run the module
   register: result
   sample_module:
-    name: "ansible-creator"
+    name: ansible-creator
 
 - name: Display the message
   ansible.builtin.debug:

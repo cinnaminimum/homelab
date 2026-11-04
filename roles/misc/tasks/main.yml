@@ -5,5 +5,5 @@
 
   ansible.builtin.file:
     path: /etc/homelab
-    mode: '755'
+    mode: "755"
     state: directory

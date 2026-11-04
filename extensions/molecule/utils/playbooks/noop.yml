@@ -5,4 +5,4 @@
   tasks:
     - name: Run a noop
       ansible.builtin.debug:
-        msg: "This does nothing!"
+        msg: This does nothing!

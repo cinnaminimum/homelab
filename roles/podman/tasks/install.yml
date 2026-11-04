@@ -11,5 +11,5 @@
 
   ansible.builtin.systemd:
     name: podman-auto-update.timer
-    enabled: '{{ podman_auto_update }}'
+    enabled: "{{ podman_auto_update }}"
     state: '{{ podman_auto_update | ansible.builtin.ternary("started", "stopped") }}'

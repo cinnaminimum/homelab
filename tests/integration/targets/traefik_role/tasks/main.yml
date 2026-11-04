@@ -9,4 +9,4 @@
     - label
 
   ansible.builtin.include_tasks:
-    file: '{{ item }}.yml'
+    file: "{{ item }}.yml"

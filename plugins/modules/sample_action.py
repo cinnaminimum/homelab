@@ -30,6 +30,6 @@ EXAMPLES = """
   tasks:
     - name: Example sample_action plugin
       with_prefix:
-        prefix: "Hello, World"
-        msg: "Ansible!"
+        prefix: Hello, World
+        msg: Ansible!
 """

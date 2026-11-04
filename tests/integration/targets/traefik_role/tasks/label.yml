@@ -1,9 +1,10 @@
+# yamllint disable-line rule:line-length
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
 
 - name: Include traefik role with test label
   vars:
     traefik_podman_quadlet_container_extra:
-      - 'Label=test={{ traefik_role_slug }}'
+      - Label=test={{ traefik_role_slug }}
 
   ansible.builtin.include_role:
     name: cinnaminimum.homelab.traefik

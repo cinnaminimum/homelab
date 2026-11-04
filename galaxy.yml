@@ -19,8 +19,8 @@ manifest:
     - include roles/*/README.md
     - include roles/*/files/*
 
-name: "homelab"
-namespace: "cinnaminimum"
+name: homelab
+namespace: cinnaminimum
 readme: README.md
 repository: https://codeberg.org/cinnaminimum/homelab
 
