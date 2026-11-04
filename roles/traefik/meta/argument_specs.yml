@@ -209,7 +209,8 @@ argument_specs:
         description: Index of all possible options for O(traefik_file_provider)
 
       - name: Traefik & ACME certificates resolver
-        link: https://doc.traefik.io/traefik/reference/install-configuration/tls/certificate-resolvers/acme/
+        link: >-
+          https://doc.traefik.io/traefik/reference/install-configuration/tls/certificate-resolvers/acme/
         description: Official Traefik ACME documentation
 
     author: Gerald Ya Ya
