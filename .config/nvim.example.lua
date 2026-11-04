@@ -82,7 +82,7 @@ M.setup_conform = function()
   conform.formatters_by_ft["markdown"] = { "rumdl" }
   conform.formatters_by_ft["python"] = { "ruff_fix", "ruff_organize_imports", "ruff_format" }
   conform.formatters_by_ft["toml"] = { "tombi" }
-  conform.formatters_by_ft["yaml.ansible"] = { "ansible-lint" }
+  conform.formatters_by_ft["ansible"] = { "ansible-lint" }
 end
 
 ---Register filetypes with neovim
@@ -110,6 +110,10 @@ end
 ---@private
 M.setup_lsp = function()
   vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
+
+  vim.lsp.config("ansiblels", {
+    filetypes = { "ansible" },
+  })
 
   vim.lsp.config('ruff', {
     init_options = {
