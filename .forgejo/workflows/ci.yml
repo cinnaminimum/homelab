@@ -84,7 +84,7 @@ jobs:
         # yamllint enable rule:line-length
 
       - name: Set up mise
-        uses: https://github.com/jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
+        uses: https://github.com/jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5
         with:
           github_token: ${{ secrets.HOMELAB_GITHUB_TOKEN }}
           working_directory: ${{ steps.collection-metadata.outputs.checkout-path }}
