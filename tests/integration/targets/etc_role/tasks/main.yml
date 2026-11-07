@@ -1,10 +1,10 @@
 # yamllint disable-line rule:line-length
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
 
-- name: Ensure /etc/homelab/ directory exists
-  become: true
+- name: Include tasks
+  loop:
+    - default
+    - custom
 
-  ansible.builtin.file:
-    path: /etc/homelab
-    mode: "755"
-    state: directory
+  ansible.builtin.include_tasks:
+    file: "{{ item }}.yml"

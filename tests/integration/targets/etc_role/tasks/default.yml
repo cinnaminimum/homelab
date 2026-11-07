@@ -1,18 +1,23 @@
 # yamllint disable-line rule:line-length
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
 
-- name: Include meta role
+- name: Include etc role
 
   ansible.builtin.include_role:
-    name: cinnaminimum.homelab.misc
+    name: cinnaminimum.homelab.etc
 
-- name: Stat /etc/homelab/ directory
+- name: Assert etc_homelab_dir fact is set
+
+  ansible.builtin.assert:
+    that: etc_homelab_dir == "/etc/homelab/"
+
+- name: Stat etc_homelab_dir
   register: meta_role_stat
 
   ansible.builtin.stat:
     path: /etc/homelab/
 
-- name: Assert /etc/homelab/ directory exists
+- name: Assert etc_homelab_dir exists
 
   ansible.builtin.assert:
     that: meta_role_stat.stat.exists

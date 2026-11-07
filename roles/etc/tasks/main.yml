@@ -1,0 +1,15 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Ensure etc_homelab_dir exists
+  become: true
+
+  ansible.builtin.file:
+    path: "{{ etc_homelab_dir }}"
+    mode: "755"
+    state: directory
+
+- name: Set etc_homelab_dir fact
+
+  ansible.builtin.set_fact:
+    etc_homelab_dir: "{{ etc_homelab_dir }}"

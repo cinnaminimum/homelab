@@ -87,7 +87,8 @@
   become: true
   loop:
     - src: traefik.env.j2
-      dest: /etc/homelab/traefik.env
+      dest: "{{ [etc_homelab_dir, 'traefik.env'] | ansible.builtin.path_join }}"
+
   loop_control:
     label: "{{ traefik_item.src }}"
     loop_var: traefik_item

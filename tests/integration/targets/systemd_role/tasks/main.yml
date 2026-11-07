@@ -1,0 +1,15 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Include systemd role
+
+  ansible.builtin.include_role:
+    name: systemd
+
+# Step will blow up if handler is not available
+- name: Notify handler
+  changed_when: true
+  notify: Reload systemd
+
+  ansible.builtin.command:
+    argv: ["true"]

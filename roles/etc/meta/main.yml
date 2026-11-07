@@ -1,0 +1,35 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta.json
+
+argument_specs:
+  main:
+    short_description: Internal role to help manage the C(/etc/homelab/) directory
+    description:
+      - Not intended for external use.
+      - The primary purpose of thise role is to ensure the C(/etc/homelab/) directory exists and to
+        constantise its location as C(etc_homelab_dir).
+
+    options:
+      etc_homelab_dir:
+        type: path
+        default: /etc/homelab/
+        description:
+          - The directory to store application configuration data.
+          - A custom location might make it not actually a C(homelab) directory, but this is still
+            the C(cinnaminimum.homelab) collection, so it will still be referred to as the homelab
+            directory.
+
+    author: Gerald Ya Ya
+    version_added: 0.1.1
+
+galaxy_info:
+  description: cinnaminimum.homelab etc Role
+
+  galaxy_tags:
+    - linux
+
+  author: Gerald Ya Ya
+  company: Roger's Place
+  issue_tracker_url: https://codeberg.org/cinnaminimum/homelab/issues
+  license: GPL-3.0-only
+  min_ansible_version: "2.14"
