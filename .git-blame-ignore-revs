@@ -21,3 +21,6 @@ b903d4ae89cbff06d58278fe021408bd7c8e6fa3
 
 # 2026-11-04 | style: Reduce line length as much as possible
 a415f5359ac915f4529474862a3a2e9e8a596eab
+
+# 2026-11-07 | style: Add trailing comma to neovim example config
+913c6d13280c353390bfd0ba8792675e5c73efb4
