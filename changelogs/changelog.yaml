@@ -29,3 +29,9 @@ releases:
     - 1786886670_podman-readme.yml
     - 1792669162_no-meta-role.yml
     release_date: '2026-10-22'
+  0.1.1:
+    fragments:
+    - 1792674980_galaxy-cleanup.yml
+    - 1792681451_ruff-isort.yml
+    - 1794035945_misc-split.yml
+    release_date: '2026-11-07'
