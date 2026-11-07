@@ -18,7 +18,7 @@ M.filetypes = {
     ["j2"] = "jinja",
     ["network"] = "ini",
     ["volume"] = "ini",
-  }
+  },
 }
 
 ---Run the configuration setup
