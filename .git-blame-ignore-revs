@@ -24,3 +24,6 @@ a415f5359ac915f4529474862a3a2e9e8a596eab
 
 # 2026-11-07 | style: Add trailing comma to neovim example config
 913c6d13280c353390bfd0ba8792675e5c73efb4
+
+# 2026-11-08 | style: Sort keys in traefik metadata
+afe0fbc4c629d24f1d6119d8fc3c001a0e1b80e9
