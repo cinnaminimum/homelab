@@ -11,11 +11,7 @@ galaxy_info:
     - podman
     - quadlet
 
-  author: Gerald Ya Ya
-  company: Roger's Place
-  issue_tracker_url: https://codeberg.org/cinnaminimum/homelab/issues
-  license: GPL-3.0-only
-  min_ansible_version: "2.14"
+  standalone: false
 
 dependencies:
   - cinnaminimum.homelab.etc
