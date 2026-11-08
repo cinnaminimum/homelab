@@ -89,7 +89,7 @@ argument_specs:
       - name: Install Traefik without customisation
 
         ansible.builtin.include_role:
-          name: traefik
+          name: cinnaminimum.homelab.traefik
 
       ---
 
@@ -100,7 +100,7 @@ argument_specs:
           traefik_state: absent
 
         ansible.builtin.include_role:
-          name: traefik
+          name: cinnaminimum.homelab.traefik
 
       ---
 
@@ -151,7 +151,7 @@ argument_specs:
             - Secret=homelab-traefik-cloudflare-token
 
         ansible.builtin.include_role:
-          name: traefik
+          name: cinnaminimum.homelab.traefik
 
       ---
 
@@ -172,7 +172,7 @@ argument_specs:
                 #
 
         ansible.builtin.include_role:
-          name: traefik
+          name: cinnaminimum.homelab.traefik
 
       ---
 
