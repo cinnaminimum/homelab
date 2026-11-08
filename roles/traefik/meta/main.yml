@@ -216,6 +216,11 @@ argument_specs:
     author: Gerald Ya Ya
     version_added: 0.1.0
 
+dependencies:
+  - cinnaminimum.homelab.etc
+  - cinnaminimum.homelab.podman
+  - cinnaminimum.homelab.systemd
+
 galaxy_info:
   description: cinnaminimum.homelab traefik Role
 
@@ -227,8 +232,3 @@ galaxy_info:
     - quadlet
 
   standalone: false
-
-dependencies:
-  - cinnaminimum.homelab.etc
-  - cinnaminimum.homelab.podman
-  - cinnaminimum.homelab.systemd
