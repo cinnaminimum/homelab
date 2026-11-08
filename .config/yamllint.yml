@@ -7,7 +7,6 @@ ignore:
 
 rules:
   document-start:
-    ignore: ["*.py"]
     present: false
 
   line-length:
