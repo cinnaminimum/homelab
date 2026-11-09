@@ -18,7 +18,7 @@ content.
 
 ### Roles
 
-- [Traefik](https://cinnaminimum.codeberg.page/homelab/traefik_role.html)
+- [traefik](https://cinnaminimum.codeberg.page/homelab/traefik_role.html)
 
 ## Using this collection
 
