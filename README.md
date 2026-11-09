@@ -18,6 +18,7 @@ content.
 
 ### Roles
 
+- [runitor](https://cinnaminimum.codeberg.page/homelab/runitor_role.html)
 - [traefik](https://cinnaminimum.codeberg.page/homelab/traefik_role.html)
 
 ## Using this collection
